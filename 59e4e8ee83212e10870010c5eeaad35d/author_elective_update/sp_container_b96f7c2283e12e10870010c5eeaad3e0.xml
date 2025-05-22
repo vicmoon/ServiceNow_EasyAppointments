@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_container">
+    <sp_container action="DELETE">
+        <background_color/>
+        <background_image/>
+        <background_style>default</background_style>
+        <bootstrap_alt>false</bootstrap_alt>
+        <class_name/>
+        <container_class_name/>
+        <name>Doctor Home - Container 2</name>
+        <order>2</order>
+        <semantic_tag/>
+        <sp_page display_value="appointments_home_page">cc2c306283e12e10870010c5eeaad35f</sp_page>
+        <subheader>false</subheader>
+        <sys_class_name>sp_container</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-05-19 09:25:59</sys_created_on>
+        <sys_id>b96f7c2283e12e10870010c5eeaad3e0</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>Doctor Home - Container 2</sys_name>
+        <sys_package display_value="Easy_Appointments" source="x_1032697_easy_a_0">59e4e8ee83212e10870010c5eeaad35d</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Easy_Appointments">59e4e8ee83212e10870010c5eeaad35d</sys_scope>
+        <sys_update_name>sp_container_b96f7c2283e12e10870010c5eeaad3e0</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-05-19 09:28:37</sys_updated_on>
+        <title/>
+        <width>container</width>
+    </sp_container>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Easy_Appointments">59e4e8ee83212e10870010c5eeaad35d</application>
+        <file_path/>
+        <instance_id>5704da2f1b6af5949377eb9b2d4bcb6b</instance_id>
+        <instance_name>dev221523</instance_name>
+        <name>sp_container_b96f7c2283e12e10870010c5eeaad3e0</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_container"><sp_container action="INSERT_OR_UPDATE"><background_color/><background_image/><background_style>default</background_style><bootstrap_alt>false</bootstrap_alt><class_name/><container_class_name/><name>Doctor Home - Container 2</name><order>2</order><semantic_tag/><sp_page display_value="appointments_home_page">cc2c306283e12e10870010c5eeaad35f</sp_page><subheader>false</subheader><sys_class_name>sp_container</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2025-05-19 09:25:59</sys_created_on><sys_id>b96f7c2283e12e10870010c5eeaad3e0</sys_id><sys_mod_count>2</sys_mod_count><sys_name>Doctor Home - Container 2</sys_name><sys_package display_value="Easy_Appointments" source="x_1032697_easy_a_0">59e4e8ee83212e10870010c5eeaad35d</sys_package><sys_policy/><sys_scope display_value="Easy_Appointments">59e4e8ee83212e10870010c5eeaad35d</sys_scope><sys_update_name>sp_container_b96f7c2283e12e10870010c5eeaad3e0</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2025-05-19 09:28:37</sys_updated_on><title/><width>container</width></sp_container></record_update>]]></payload>
+        <payload_hash>48323480</payload_hash>
+        <record_name>Doctor Home - Container 2</record_name>
+        <reverted_from/>
+        <source>d5e4e8ee83212e10870010c5eeaad362</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-05-19 09:28:37</sys_created_on>
+        <sys_id>1000496683e12e10870010c5eeaad313</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>196e7dfaa0c0000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-05-19 09:28:37</sys_updated_on>
+        <type>Container</type>
+        <update_guid>94004966e7e12e10516f6e294ccdf412</update_guid>
+        <update_guid_history>94004966e7e12e10516f6e294ccdf412:48323480,847ff46606e12e10c67be8f08c010c98:1307929656,bd6f7c2283e12e10628a0ed35f9df7e1:969944087</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="Doctor Home - Container 2">dbb402f683ad6e10870010c5eeaad3ee</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-05-20 09:07:25</sys_created_on>
+        <sys_db_object display_value="" name="sp_container">sp_container</sys_db_object>
+        <sys_id>46e91bb2d52c445ca3b53ed4a7e48844</sys_id>
+        <sys_metadata>b96f7c2283e12e10870010c5eeaad3e0</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Doctor Home - Container 2</sys_name>
+        <sys_package display_value="Easy_Appointments" source="x_1032697_easy_a_0">59e4e8ee83212e10870010c5eeaad35d</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Easy_Appointments">59e4e8ee83212e10870010c5eeaad35d</sys_scope>
+        <sys_scope_delete display_value="">0680a9daf3c8467f80476c6fa3c15721</sys_scope_delete>
+        <sys_update_name>sp_container_b96f7c2283e12e10870010c5eeaad3e0</sys_update_name>
+        <sys_update_version display_value="sp_container_b96f7c2283e12e10870010c5eeaad3e0">1000496683e12e10870010c5eeaad313</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-05-20 09:07:25</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_embedded_help_role">
+    <sys_embedded_help_role action="INSERT_OR_UPDATE">
+        <order>1000</order>
+        <role display_value="x_1032697_easy_a_0.appointments_patient" name="x_1032697_easy_a_0.appointments_patient">eeae202e83612e10870010c5eeaad394</role>
+        <sys_class_name>sys_embedded_help_role</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-05-19 08:13:36</sys_created_on>
+        <sys_id>65dea8ea83612e10870010c5eeaad3e5</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>eeae202e83612e10870010c5eeaad394</sys_name>
+        <sys_package display_value="Easy_Appointments" source="x_1032697_easy_a_0">59e4e8ee83212e10870010c5eeaad35d</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Easy_Appointments">59e4e8ee83212e10870010c5eeaad35d</sys_scope>
+        <sys_update_name>sys_embedded_help_role_65dea8ea83612e10870010c5eeaad3e5</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-05-19 08:13:36</sys_updated_on>
+    </sys_embedded_help_role>
+</record_update>

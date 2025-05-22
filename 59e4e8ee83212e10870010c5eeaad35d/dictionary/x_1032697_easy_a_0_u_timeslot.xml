@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element db_object_id="918a68e683612e10870010c5eeaad3a2" label="u_timeslot" max_length="40" name="x_1032697_easy_a_0_u_timeslot" type="collection">
+        <element default="javascript:current.getTableName();" label="Class" max_length="80" name="sys_class_name" type="sys_class_name"/>
+        <element label="Doctor" mandatory="true" max_length="32" name="u_doctor" reference="x_1032697_easy_a_0_u_doctor" type="reference"/>
+        <element label="Start Time" mandatory="true" max_length="40" name="u_start_time" type="glide_date_time"/>
+        <element default="True&#10;" label="Is Available" max_length="40" name="u_is_available" type="boolean"/>
+        <element label="End Time" mandatory="true" max_length="40" name="u_end_time" type="glide_date_time"/>
+        <index name="index">
+            <element name="sys_class_name"/>
+        </index>
+        <index name="index2">
+            <element name="u_doctor"/>
+        </index>
+    </element>
+</database>

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="DELETE">
+        <category>custom</category>
+        <client_script><![CDATA[function DoctorListController($location) {
+  var c = this;
+  c.selectDoctor = function(sysId) {
+    // navigate to profile page, passing doctor sys_id
+    $location.path('/doctor_profile').search({ id: sysId });
+  };
+}
+angular.module('sn.$sp').controller('DoctorListController', DoctorListController);
+]]></client_script>
+        <controller_as>c</controller_as>
+        <css/>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description>Displays a filterable list of doctors</description>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>new_doctor_list</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {
+  
+}]]></link>
+        <name>Copy of Doctor List</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+  var gr = new GlideRecord('x_1032697_easy_a_0_u_doctor');
+  gr.addQuery('u_active', true);
+  gr.query();
+  data.count = gr.getRowCount();        // how many rows did we find?
+  data.doctors = [];
+  while (gr.next()) {
+    data.doctors.push({ /* … */ });
+  }
+})();
+]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-05-19 18:07:14</sys_created_on>
+        <sys_id>19b63226836d2e10870010c5eeaad343</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>Copy of Doctor List</sys_name>
+        <sys_package display_value="Easy_Appointments" source="x_1032697_easy_a_0">59e4e8ee83212e10870010c5eeaad35d</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Easy_Appointments">59e4e8ee83212e10870010c5eeaad35d</sys_scope>
+        <sys_update_name>sp_widget_19b63226836d2e10870010c5eeaad343</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-05-19 18:07:39</sys_updated_on>
+        <template><![CDATA[<div class="doctor-list">
+  <div class="doctor-card" ng-repeat="doc in c.data.doctors">
+    <h3>{{ doc.name }}</h3>
+    <p>Specialty: {{ doc.specialty }}</p>
+    <button ng-click="c.selectDoctor(doc.sys_id)">View Profile</button>
+  </div>
+</div>
+]]></template>
+    </sp_widget>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Easy_Appointments">59e4e8ee83212e10870010c5eeaad35d</application>
+        <file_path/>
+        <instance_id>5704da2f1b6af5949377eb9b2d4bcb6b</instance_id>
+        <instance_name>dev221523</instance_name>
+        <name>sp_widget_19b63226836d2e10870010c5eeaad343</name>
+        <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="sp_widget"&gt;&lt;sp_widget action="INSERT_OR_UPDATE"&gt;&lt;category&gt;custom&lt;/category&gt;&lt;client_script&gt;&lt;![CDATA[function DoctorListController($location) {
+  var c = this;
+  c.selectDoctor = function(sysId) {
+    // navigate to profile page, passing doctor sys_id
+    $location.path('/doctor_profile').search({ id: sysId });
+  };
+}
+angular.module('sn.$sp').controller('DoctorListController', DoctorListController);
+]]&gt;&lt;/client_script&gt;&lt;controller_as&gt;c&lt;/controller_as&gt;&lt;css/&gt;&lt;data_table&gt;sp_instance&lt;/data_table&gt;&lt;demo_data/&gt;&lt;description&gt;Displays a filterable list of doctors&lt;/description&gt;&lt;docs/&gt;&lt;field_list/&gt;&lt;has_preview&gt;true&lt;/has_preview&gt;&lt;id&gt;new_doctor_list&lt;/id&gt;&lt;internal&gt;false&lt;/internal&gt;&lt;link&gt;&lt;![CDATA[function link(scope, element, attrs, controller) {
+  
+}]]&gt;&lt;/link&gt;&lt;name&gt;Copy of Doctor List&lt;/name&gt;&lt;option_schema/&gt;&lt;public&gt;false&lt;/public&gt;&lt;roles/&gt;&lt;script&gt;&lt;![CDATA[(function() {
+  var gr = new GlideRecord('x_1032697_easy_a_0_u_doctor');
+  gr.addQuery('u_active', true);
+  gr.query();
+  data.count = gr.getRowCount();        // how many rows did we find?
+  data.doctors = [];
+  while (gr.next()) {
+    data.doctors.push({ /* … */ });
+  }
+})();
+]]&gt;&lt;/script&gt;&lt;servicenow&gt;false&lt;/servicenow&gt;&lt;sys_class_name&gt;sp_widget&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2025-05-19 18:07:14&lt;/sys_created_on&gt;&lt;sys_id&gt;19b63226836d2e10870010c5eeaad343&lt;/sys_id&gt;&lt;sys_mod_count&gt;1&lt;/sys_mod_count&gt;&lt;sys_name&gt;Copy of Doctor List&lt;/sys_name&gt;&lt;sys_package display_value="Easy_Appointments" source="x_1032697_easy_a_0"&gt;59e4e8ee83212e10870010c5eeaad35d&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_scope display_value="Easy_Appointments"&gt;59e4e8ee83212e10870010c5eeaad35d&lt;/sys_scope&gt;&lt;sys_update_name&gt;sp_widget_19b63226836d2e10870010c5eeaad343&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2025-05-19 18:07:39&lt;/sys_updated_on&gt;&lt;template&gt;&lt;![CDATA[&lt;div class="doctor-list"&gt;
+  &lt;div class="doctor-card" ng-repeat="doc in c.data.doctors"&gt;
+    &lt;h3&gt;{{ doc.name }}&lt;/h3&gt;
+    &lt;p&gt;Specialty: {{ doc.specialty }}&lt;/p&gt;
+    &lt;button ng-click="c.selectDoctor(doc.sys_id)"&gt;View Profile&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+]]&gt;&lt;/template&gt;&lt;/sp_widget&gt;&lt;/record_update&gt;</payload>
+        <payload_hash>-1713191972</payload_hash>
+        <record_name>Copy of Doctor List</record_name>
+        <reverted_from/>
+        <source>cdeaaea2832d2e10870010c5eeaad398</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-05-19 18:07:39</sys_created_on>
+        <sys_id>1bc63226836d2e10870010c5eeaad34c</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>196e9badd100000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-05-19 18:07:39</sys_updated_on>
+        <type>Widget</type>
+        <update_guid>dfc63226186d2e100e74fa5cac18874b</update_guid>
+        <update_guid_history>dfc63226186d2e100e74fa5cac18874b:-1713191972,ddb63226d06d2e10263adf95ded2b544:956952974</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="Copy of Doctor List">d91b2df2832d6e10870010c5eeaad3cb</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-05-20 07:15:19</sys_created_on>
+        <sys_db_object display_value="" name="sp_widget">sp_widget</sys_db_object>
+        <sys_id>119f8e1004c1409a8f31bf16a4d2c0b1</sys_id>
+        <sys_metadata>19b63226836d2e10870010c5eeaad343</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Copy of Doctor List</sys_name>
+        <sys_package display_value="Easy_Appointments" source="x_1032697_easy_a_0">59e4e8ee83212e10870010c5eeaad35d</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Easy_Appointments">59e4e8ee83212e10870010c5eeaad35d</sys_scope>
+        <sys_scope_delete display_value="">0680a9daf3c8467f80476c6fa3c15721</sys_scope_delete>
+        <sys_update_name>sp_widget_19b63226836d2e10870010c5eeaad343</sys_update_name>
+        <sys_update_version display_value="sp_widget_19b63226836d2e10870010c5eeaad343">1bc63226836d2e10870010c5eeaad34c</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-05-20 07:15:19</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

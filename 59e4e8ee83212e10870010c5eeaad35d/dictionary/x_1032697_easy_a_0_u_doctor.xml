@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element db_object_id="10a620a283612e10870010c5eeaad31a" label="u_doctor" max_length="40" name="x_1032697_easy_a_0_u_doctor" type="collection">
+        <element label="Bio" max_length="40" name="u_bio" type="html"/>
+        <element label="Availability" max_length="1024" name="u_availability" reference="x_1032697_easy_a_0_u_timeslot" type="glide_list"/>
+        <element label="Photo" max_length="40" name="u_photo" type="file_attachment"/>
+        <element choice="1" display="true" label="Speciality" mandatory="true" max_length="40" name="u_speciality" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="Dermatology" sequence="1" value="dermatology"/>
+                <element inactive_on_update="false" label="Cardiology" sequence="0" value="cardiology"/>
+                <element inactive_on_update="false" label="Psychiatry" sequence="5" value="psychiatry"/>
+                <element inactive_on_update="false" label="Pediatrics" sequence="2" value="pediatrics"/>
+                <element inactive_on_update="false" label="Infectious diseases" sequence="6" value="infectious_diseases"/>
+                <element inactive_on_update="false" label="Neurology" sequence="3" value="neurology"/>
+                <element inactive_on_update="false" label="Surgery" sequence="7" value="surgery"/>
+                <element inactive_on_update="false" label="Oncology" sequence="4" value="oncology"/>
+            </choice>
+        </element>
+        <element label="Name" mandatory="true" max_length="100" name="u_name" type="string"/>
+        <element label="Active" max_length="40" name="u_active" type="boolean"/>
+    </element>
+</database>

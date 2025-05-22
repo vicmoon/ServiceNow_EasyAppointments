@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[function DoctorListController($location, $scope, spUtil) {
+  var c = this;
+
+  // Initialize
+  c.loading = true;
+  c.error   = null;
+  c.doctors = [];
+
+  // When data is received from server
+  $scope.$on('data_received', function() {
+    c.loading = false;
+    c.error   = c.data.error || null;
+   
+  });
+
+  // Kick off the fetch from the server
+  spUtil.get($scope);
+
+  // Your selectDoctor, etc.
+  c.selectDoctor = function(sysId) {
+    $location.path('/doctor_portal')
+             .search({ id: 'doctor_profile', sys_id: sysId });
+  };
+}
+DoctorListController.$inject = ['$location', '$scope', 'spUtil'];
+]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.doctor-list-widget {
+  .loading-spinner {
+    text-align: center;
+    padding: 2rem;
+    span {
+      margin-right: 10px;
+      vertical-align: middle;
+    }
+  }
+  
+  .empty-state {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: $text-muted;
+    
+    .fa {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+  }
+  
+  .doctor-card {
+    margin-bottom: 20px;
+    transition: transform 0.2s ease;
+    
+    &amp;:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    .doctor-name {
+      margin: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    
+    .panel-body {
+      min-height: 120px;
+    }
+  }
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data>{
+  "doctors": [
+    { "sys_id": "1", "name": "Jane Doe", "specialty": "Cardiology" },
+    { "sys_id": "2", "name": "Jack Who", "specialty": "Neurology" }
+  ]
+}
+</demo_data>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>all_doctors</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>All Doctors</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+  // pick up your table name
+  var tableName = options.tableName || 'x_1032697_easy_a_0_u_doctor';
+
+  // data.* always has to exist
+  data.doctors = [];
+  data.count = 0;
+
+  // standard GlideRecord query
+  var gr = new GlideRecord(tableName);
+  gr.addQuery('u_active', true);
+  gr.orderBy('u_name');
+  gr.query();
+
+  // manual counter
+  while (gr.next()) {
+    data.doctors.push({
+      sys_id:    gr.getValue('sys_id'),
+      name:      gr.getValue('u_name'),
+      specialty: gr.getDisplayValue('u_specialty')
+    });
+    data.count++;
+  }
+
+  // optional debug
+  gs.info("DoctorListWidget: loaded " + data.count + " records");
+})();
+]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-05-20 07:16:24</sys_created_on>
+        <sys_id>995badf2832d6e10870010c5eeaad3dc</sys_id>
+        <sys_mod_count>13</sys_mod_count>
+        <sys_name>All Doctors</sys_name>
+        <sys_package display_value="Easy_Appointments" source="x_1032697_easy_a_0">59e4e8ee83212e10870010c5eeaad35d</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Easy_Appointments">59e4e8ee83212e10870010c5eeaad35d</sys_scope>
+        <sys_update_name>sp_widget_995badf2832d6e10870010c5eeaad3dc</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-05-20 08:16:48</sys_updated_on>
+        <template><![CDATA[<div class="doctor-list-widget">
+  <!-- Loading state -->
+  
+    <!-- Debug section -->
+  <div style="border: 1px solid #ccc; padding: 10px; margin-bottom: 20px; background-color: #f9f9f9;" ng-if="true">
+    <h4>Debug Information</h4>
+    <div>Widget data object available: {{c.data ? 'Yes' : 'No'}}</div>
+    <div ng-if="c.data">Doctors array exists: {{c.data.doctors ? 'Yes' : 'No'}}</div>
+    <div ng-if="c.data && c.data.doctors">Doctors array length: {{c.data.doctors.length}}</div>
+    <div ng-if="c.data && c.data.doctors && c.data.doctors.length > 0">
+      First doctor name: {{c.data.doctors[0].name}}
+    </div>
+    <div ng-if="c.data">Raw data object: <pre>{{c.data | json}}</pre></div>
+  </div>
+
+  <div ng-if="c.loading" class="loading-spinner">
+    <span class="fa fa-spinner fa-spin fa-2x"></span>
+    <span>Loading doctors...</span>
+  </div>
+
+  <!-- Error state -->
+  <div ng-if="c.error" class="alert alert-danger">
+    <span class="fa fa-exclamation-circle"></span>
+    <span>{{c.error}}</span>
+  </div>
+
+  <!-- Empty state -->
+  <div ng-if="!c.loading && !c.error && (!c.data.doctors || c.data.doctors.length === 0)" class="empty-state">
+    <span class="fa fa-user-md"></span>
+    <p>No active doctors found.</p>
+  </div>
+
+  <!-- Results state -->
+  <div ng-if="!c.loading && !c.error && c.data.doctors.length > 0">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+          Found {{c.data.doctors.length}} active doctor<span ng-if="c.data.doctors.length != 1">s</span>
+        </h3>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-4 col-sm-6" ng-repeat="doctor in c.data.doctors">
+            <div class="doctor-card panel panel-default">
+              <div class="panel-heading">
+                <h4 class="doctor-name">{{doctor.name}}</h4>
+              </div>
+              <div class="panel-body">
+                <p><strong>Specialty:</strong> {{doctor.specialty}}</p>
+                <button class="btn btn-primary" ng-click="c.selectDoctor(doctor.sys_id)">
+                  <span class="fa fa-user"></span> View Profile
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>]]></template>
+    </sp_widget>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>995badf2832d6e10870010c5eeaad3dc</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-05-20 07:16:24</sys_created_on>
+        <sys_id>d55badf2832d6e10870010c5eeaad3df</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-05-20 07:16:24</sys_updated_on>
+        <table>sp_widget</table>
+        <use_es_latest>true</use_es_latest>
+    </sys_es_latest_script>
+</record_update>

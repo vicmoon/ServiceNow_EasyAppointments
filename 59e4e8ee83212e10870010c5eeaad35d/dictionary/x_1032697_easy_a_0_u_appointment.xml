@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element db_object_id="db7bec2a83612e10870010c5eeaad3f4" label="u_appointment" max_length="40" name="x_1032697_easy_a_0_u_appointment" type="collection">
+        <element default="javascript:current.getTableName();" label="Class" max_length="80" name="sys_class_name" type="sys_class_name"/>
+        <element label="Doctor" mandatory="true" max_length="32" name="u_doctor" reference="x_1032697_easy_a_0_u_doctor" type="reference"/>
+        <element label="Cancellation Reason" max_length="40" name="u_cancellation_reason" type="html"/>
+        <element label="Notes" max_length="4000" name="u_notes" type="string"/>
+        <element label="Confirmed On" max_length="40" name="u_confirmed_on" type="glide_date_time"/>
+        <element label="Patient" mandatory="true" max_length="32" name="u_patient" reference="x_1032697_easy_a_0_u_patient" type="reference"/>
+        <element choice="1" label="Status" max_length="40" name="u_status" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="Confirmed" sequence="1" value="confirmed"/>
+                <element inactive_on_update="false" label="Pending" sequence="0" value="pending"/>
+                <element inactive_on_update="false" label="Completed" sequence="2" value="completed"/>
+                <element inactive_on_update="false" label="Canceled" sequence="3" value="canceled"/>
+            </choice>
+        </element>
+        <element label="Timeslot" mandatory="true" max_length="32" name="u_timeslot" reference="x_1032697_easy_a_0_u_timeslot" type="reference"/>
+        <index name="index">
+            <element name="sys_class_name"/>
+        </index>
+        <index name="index2">
+            <element name="u_doctor"/>
+        </index>
+        <index name="index3">
+            <element name="u_patient"/>
+        </index>
+        <index name="index4">
+            <element name="u_timeslot"/>
+        </index>
+    </element>
+</database>

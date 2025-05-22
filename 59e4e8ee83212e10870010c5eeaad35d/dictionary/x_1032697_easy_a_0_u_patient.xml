@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element db_object_id="e3496c6683612e10870010c5eeaad30a" label="u_patient" max_length="40" name="x_1032697_easy_a_0_u_patient" type="collection">
+        <element label="Email" mandatory="true" max_length="100" name="u_email" type="string"/>
+        <element label="User Account" max_length="32" name="u_user" reference="sys_user" type="reference"/>
+        <element label="Date of Birth" max_length="40" name="u_date_of_birth" type="glide_date"/>
+        <element label="Address" max_length="200" name="u_address" type="string"/>
+        <element label="Phone" max_length="40" name="u_phone" type="phone_number_e164"/>
+        <element label="Name" mandatory="true" max_length="100" name="u_name" type="string"/>
+        <index name="index">
+            <element name="u_user"/>
+        </index>
+    </element>
+</database>
