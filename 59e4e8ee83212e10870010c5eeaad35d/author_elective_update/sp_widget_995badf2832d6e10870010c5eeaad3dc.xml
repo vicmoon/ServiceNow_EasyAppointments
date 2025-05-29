@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="DELETE">
+        <category>custom</category>
+        <client_script><![CDATA[function DoctorListController($location) {
+  var c = this;
+
+  // c.data.doctors is already populated by the time this runs
+  c.selectDoctor = function(sysId) {
+    $location.path('/doctor_portal')
+             .search({ id: 'doctor_profile', sys_id: sysId });
+  };
+}
+DoctorListController.$inject = ['$location'];
+]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.doctor-list-widget {
+  .loading-spinner {
+    text-align: center;
+    padding: 2rem;
+    span {
+      margin-right: 10px;
+      vertical-align: middle;
+    }
+  }
+  
+  .empty-state {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: $text-muted;
+    
+    .fa {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+  }
+  
+  .doctor-card {
+    margin-bottom: 20px;
+    transition: transform 0.2s ease;
+    
+    &amp;:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    .doctor-name {
+      margin: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    
+    .panel-body {
+      min-height: 120px;
+    }
+  }
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data>{
+  "doctors": [
+    { "sys_id": "1", "name": "Jane Doe", "specialty": "Cardiology" },
+    { "sys_id": "2", "name": "Jack Who", "specialty": "Neurology" }
+  ]
+}
+</demo_data>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>all_doctors</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>All Doctors</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+  // default table override via widget option
+  var tbl = options.tableName || 'x_1032697_easy_a_0_u_doctor';
+
+  data.doctors = [];
+
+  var gr = new GlideRecord(tbl);
+  gr.addQuery('u_active', true);
+  gr.orderBy('u_name');
+  gr.query();
+  while (gr.next()) {
+    data.doctors.push({
+      sys_id:    gr.getValue('sys_id'),
+      name:      gr.getValue('u_name'),
+      specialty: gr.getDisplayValue('u_specialty')
+    });
+  }
+})();
+]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-05-20 07:16:24</sys_created_on>
+        <sys_id>995badf2832d6e10870010c5eeaad3dc</sys_id>
+        <sys_mod_count>25</sys_mod_count>
+        <sys_name>All Doctors</sys_name>
+        <sys_package display_value="Easy_Appointments" source="x_1032697_easy_a_0">59e4e8ee83212e10870010c5eeaad35d</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Easy_Appointments">59e4e8ee83212e10870010c5eeaad35d</sys_scope>
+        <sys_update_name>sp_widget_995badf2832d6e10870010c5eeaad3dc</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-05-23 12:46:44</sys_updated_on>
+        <template><![CDATA[<div class="doctor-list-widget">
+  <!-- Empty state -->
+  <div ng-if="!c.data.doctors.length">
+    <p>No active doctors found.</p>
+  </div>
+
+  <!-- Results state -->
+  <div ng-if="c.data.doctors.length">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+          Found {{c.data.doctors.length}} active doctor
+          <span ng-if="c.data.doctors.length != 1">s</span>
+        </h3>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-4 col-sm-6" ng-repeat="doc in c.data.doctors">
+            <div class="doctor-card panel panel-default">
+              <div class="panel-heading">
+                <h4 class="doctor-name">{{doc.name}}</h4>
+              </div>
+              <div class="panel-body">
+                <p><strong>Specialty:</strong> {{doc.specialty}}</p>
+                <button class="btn btn-primary"
+                        ng-click="c.selectDoctor(doc.sys_id)">
+                  <span class="fa fa-user"></span> View Profile
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+]]></template>
+    </sp_widget>
+    <sys_es_latest_script action="DELETE">
+        <id>995badf2832d6e10870010c5eeaad3dc</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-05-20 07:16:24</sys_created_on>
+        <sys_id>d55badf2832d6e10870010c5eeaad3df</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-05-20 07:16:24</sys_updated_on>
+        <table>sp_widget</table>
+        <use_es_latest>true</use_es_latest>
+    </sys_es_latest_script>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Easy_Appointments">59e4e8ee83212e10870010c5eeaad35d</application>
+        <file_path/>
+        <instance_id>5704da2f1b6af5949377eb9b2d4bcb6b</instance_id>
+        <instance_name>dev221523</instance_name>
+        <name>sp_widget_995badf2832d6e10870010c5eeaad3dc</name>
+        <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="sp_widget"&gt;&lt;sp_widget action="INSERT_OR_UPDATE"&gt;&lt;category&gt;custom&lt;/category&gt;&lt;client_script&gt;&lt;![CDATA[function DoctorListController($location) {
+  var c = this;
+
+  // c.data.doctors is already populated by the time this runs
+  c.selectDoctor = function(sysId) {
+    $location.path('/doctor_portal')
+             .search({ id: 'doctor_profile', sys_id: sysId });
+  };
+}
+DoctorListController.$inject = ['$location'];
+]]&gt;&lt;/client_script&gt;&lt;controller_as&gt;c&lt;/controller_as&gt;&lt;css&gt;.doctor-list-widget {
+  .loading-spinner {
+    text-align: center;
+    padding: 2rem;
+    span {
+      margin-right: 10px;
+      vertical-align: middle;
+    }
+  }
+  
+  .empty-state {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: $text-muted;
+    
+    .fa {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+  }
+  
+  .doctor-card {
+    margin-bottom: 20px;
+    transition: transform 0.2s ease;
+    
+    &amp;amp;:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    .doctor-name {
+      margin: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    
+    .panel-body {
+      min-height: 120px;
+    }
+  }
+}&lt;/css&gt;&lt;data_table&gt;sp_instance&lt;/data_table&gt;&lt;demo_data&gt;{
+  "doctors": [
+    { "sys_id": "1", "name": "Jane Doe", "specialty": "Cardiology" },
+    { "sys_id": "2", "name": "Jack Who", "specialty": "Neurology" }
+  ]
+}
+&lt;/demo_data&gt;&lt;description/&gt;&lt;docs/&gt;&lt;field_list/&gt;&lt;has_preview&gt;true&lt;/has_preview&gt;&lt;id&gt;all_doctors&lt;/id&gt;&lt;internal&gt;false&lt;/internal&gt;&lt;link&gt;&lt;![CDATA[function link(scope, element, attrs, controller) {  }]]&gt;&lt;/link&gt;&lt;name&gt;All Doctors&lt;/name&gt;&lt;option_schema/&gt;&lt;public&gt;false&lt;/public&gt;&lt;roles/&gt;&lt;script&gt;&lt;![CDATA[(function() {
+  // default table override via widget option
+  var tbl = options.tableName || 'x_1032697_easy_a_0_u_doctor';
+
+  data.doctors = [];
+
+  var gr = new GlideRecord(tbl);
+  gr.addQuery('u_active', true);
+  gr.orderBy('u_name');
+  gr.query();
+  while (gr.next()) {
+    data.doctors.push({
+      sys_id:    gr.getValue('sys_id'),
+      name:      gr.getValue('u_name'),
+      specialty: gr.getDisplayValue('u_specialty')
+    });
+  }
+})();
+]]&gt;&lt;/script&gt;&lt;servicenow&gt;false&lt;/servicenow&gt;&lt;sys_class_name&gt;sp_widget&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2025-05-20 07:16:24&lt;/sys_created_on&gt;&lt;sys_id&gt;995badf2832d6e10870010c5eeaad3dc&lt;/sys_id&gt;&lt;sys_mod_count&gt;25&lt;/sys_mod_count&gt;&lt;sys_name&gt;All Doctors&lt;/sys_name&gt;&lt;sys_package display_value="Easy_Appointments" source="x_1032697_easy_a_0"&gt;59e4e8ee83212e10870010c5eeaad35d&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_scope display_value="Easy_Appointments"&gt;59e4e8ee83212e10870010c5eeaad35d&lt;/sys_scope&gt;&lt;sys_update_name&gt;sp_widget_995badf2832d6e10870010c5eeaad3dc&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2025-05-23 12:46:44&lt;/sys_updated_on&gt;&lt;template&gt;&lt;![CDATA[&lt;div class="doctor-list-widget"&gt;
+  &lt;!-- Empty state --&gt;
+  &lt;div ng-if="!c.data.doctors.length"&gt;
+    &lt;p&gt;No active doctors found.&lt;/p&gt;
+  &lt;/div&gt;
+
+  &lt;!-- Results state --&gt;
+  &lt;div ng-if="c.data.doctors.length"&gt;
+    &lt;div class="panel panel-primary"&gt;
+      &lt;div class="panel-heading"&gt;
+        &lt;h3 class="panel-title"&gt;
+          Found {{c.data.doctors.length}} active doctor
+          &lt;span ng-if="c.data.doctors.length != 1"&gt;s&lt;/span&gt;
+        &lt;/h3&gt;
+      &lt;/div&gt;
+      &lt;div class="panel-body"&gt;
+        &lt;div class="row"&gt;
+          &lt;div class="col-md-4 col-sm-6" ng-repeat="doc in c.data.doctors"&gt;
+            &lt;div class="doctor-card panel panel-default"&gt;
+              &lt;div class="panel-heading"&gt;
+                &lt;h4 class="doctor-name"&gt;{{doc.name}}&lt;/h4&gt;
+              &lt;/div&gt;
+              &lt;div class="panel-body"&gt;
+                &lt;p&gt;&lt;strong&gt;Specialty:&lt;/strong&gt; {{doc.specialty}}&lt;/p&gt;
+                &lt;button class="btn btn-primary"
+                        ng-click="c.selectDoctor(doc.sys_id)"&gt;
+                  &lt;span class="fa fa-user"&gt;&lt;/span&gt; View Profile
+                &lt;/button&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+]]&gt;&lt;/template&gt;&lt;/sp_widget&gt;&lt;sys_es_latest_script action="INSERT_OR_UPDATE"&gt;&lt;id&gt;995badf2832d6e10870010c5eeaad3dc&lt;/id&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2025-05-20 07:16:24&lt;/sys_created_on&gt;&lt;sys_id&gt;d55badf2832d6e10870010c5eeaad3df&lt;/sys_id&gt;&lt;sys_mod_count&gt;0&lt;/sys_mod_count&gt;&lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2025-05-20 07:16:24&lt;/sys_updated_on&gt;&lt;table&gt;sp_widget&lt;/table&gt;&lt;use_es_latest&gt;true&lt;/use_es_latest&gt;&lt;/sys_es_latest_script&gt;&lt;/record_update&gt;</payload>
+        <payload_hash>-1850803987</payload_hash>
+        <record_name>All Doctors</record_name>
+        <reverted_from/>
+        <source>cdeaaea2832d2e10870010c5eeaad398</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-05-23 12:46:44</sys_created_on>
+        <sys_id>91b35a7b8325e250870010c5eeaad3ec</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>196fd2e7cbf0000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-05-23 12:46:44</sys_updated_on>
+        <type>Widget</type>
+        <update_guid>19b35a7b9b25e2500d8582ad84ff39eb</update_guid>
+        <update_guid_history>19b35a7b9b25e2500d8582ad84ff39eb:-1850803987,a2a356bbf925e250065784aae69ec8bd:-678848052,a4a316bb7725e250e1dd01d4ca2238ea:-1666382685,8d13967b1325e250ceb6a73881d1c44e:902876252,bfd15e776d25e2508c4e572b36a6532d:-1675697428,8730d2778a25e2506a38ac49b1e0fde9:9961041,e7ff4277e025e250514777defa6e3ee6:1826746672,f4cf0af3f725e2504d81138317b4ab9d:-1091922712,3e1d86333d25e2509a01163e62e973e2:-2100790692,cd1d0e337925e25059db735c5d892846:-911144908,d20dc2735d25e250a3758728b249d929:1570819357,e4bcc6bf9ee1e250390e9761ee44b4bf:120646646,0229b9b6486d6e106e965253c619e052:-1604308401,478871b6366d6e103a07ff12a081e277:-1768104534,0c78f9320f6d6e109c7faff868177837:1647352763,8848b5f2066d6e10ea7513e4d9181d33:1078330450,3c77f1b2ee6d6e10d8d045c9db5a751b:-272214377,7661f97af92d6e106efd4c62199cee1f:1602179274,1231f1ba1c2d6e106f4f0b769ed7fca3:-1987906930,f021713e8a2d6e1097558a0d2e213387:-2079017494,83d0f9fab02d6e104f13ac6d12e453a7:1639706181,337035fa092d6e10f22dfb612e3f6a5d:643060686,b420b97ab52d6e105241cc6a06ed9cfc:1639706181,6eef65ba962d6e10741827f2cfbf1443:-639800301,878be536bc2d6e1019c5ab4eddcf9b18:-692171963,555badf2142d6e105562ea670031f5de:1295974678</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="All Doctors">81a6d6bf8325e250870010c5eeaad30c</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-05-23 12:59:32</sys_created_on>
+        <sys_db_object display_value="" name="sp_widget">sp_widget</sys_db_object>
+        <sys_id>2546315adcc644048f44570035454751</sys_id>
+        <sys_metadata>995badf2832d6e10870010c5eeaad3dc</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>All Doctors</sys_name>
+        <sys_package display_value="Easy_Appointments" source="x_1032697_easy_a_0">59e4e8ee83212e10870010c5eeaad35d</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Easy_Appointments">59e4e8ee83212e10870010c5eeaad35d</sys_scope>
+        <sys_scope_delete display_value="">0680a9daf3c8467f80476c6fa3c15721</sys_scope_delete>
+        <sys_update_name>sp_widget_995badf2832d6e10870010c5eeaad3dc</sys_update_name>
+        <sys_update_version display_value="sp_widget_995badf2832d6e10870010c5eeaad3dc">91b35a7b8325e250870010c5eeaad3ec</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-05-23 12:59:32</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

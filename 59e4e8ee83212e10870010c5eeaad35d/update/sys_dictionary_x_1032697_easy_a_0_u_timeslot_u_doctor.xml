@@ -5,7 +5,7 @@
         <attributes/>
         <audit>false</audit>
         <calculation/>
-        <choice>0</choice>
+        <choice/>
         <choice_field/>
         <choice_table/>
         <column_label>Doctor</column_label>
@@ -16,7 +16,7 @@
         <delete_roles/>
         <dependent/>
         <dependent_on_field/>
-        <display>false</display>
+        <display>true</display>
         <dynamic_creation>false</dynamic_creation>
         <dynamic_creation_script/>
         <dynamic_default_value/>
@@ -39,8 +39,10 @@
         <reference_cascade_rule/>
         <reference_floats>false</reference_floats>
         <reference_key/>
-        <reference_qual/>
-        <reference_qual_condition/>
+        <reference_qual>u_nameISNOTEMPTY^EQ</reference_qual>
+        <reference_qual_condition table="x_1032697_easy_a_0_u_doctor">u_nameISNOTEMPTY^EQ<item endquery="false" field="u_name" goto="false" newquery="false" operator="ISNOTEMPTY" or="false" value=""/>
+            <item endquery="true" field="" goto="false" newquery="false" operator="=" or="false" value=""/>
+        </reference_qual_condition>
         <reference_type/>
         <spell_check>false</spell_check>
         <staged>false</staged>
@@ -53,7 +55,7 @@
         <sys_scope display_value="Easy_Appointments">59e4e8ee83212e10870010c5eeaad35d</sys_scope>
         <sys_update_name>sys_dictionary_x_1032697_easy_a_0_u_timeslot_u_doctor</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-05-19 07:58:28</sys_updated_on>
+        <sys_updated_on>2025-05-28 17:43:35</sys_updated_on>
         <table_reference>false</table_reference>
         <text_index>false</text_index>
         <unique>false</unique>

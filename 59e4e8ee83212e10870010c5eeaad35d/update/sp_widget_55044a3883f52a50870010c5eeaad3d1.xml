@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[function DoctorAvailabilityController($location, $timeout, $http) {
+  var c = this;
+  const docId = $location.search().sysparm_sys_id;
+  
+  console.log('Doctor ID from URL:', docId);
+  
+  if (!docId) {
+    console.error('No sysparm_sys_id');
+    return;
+  }
+  
+  c.data = { sys_id: docId, events: [] };
+  
+  // Simplified booking function - just redirect
+  c.bookAppointment = function(timeslotId, startTime, endTime) {
+    console.log('Redirecting to booking form:', { timeslotId, startTime, endTime });
+    
+    // Build the redirect URL with parameters
+    const bookingUrl = `/sp?id=booking_form&doctor=${docId}&timeslot=${timeslotId}&start=${encodeURIComponent(startTime)}&end=${encodeURIComponent(endTime)}`;
+    
+    console.log('Redirecting to:', bookingUrl);
+    window.location.href = bookingUrl;
+  };
+  
+  $http.get('/api/now/table/x_1032697_easy_a_0_u_timeslot', {
+    params: {
+      sysparm_query: `u_doctor=${docId}^u_is_available=true`,
+      sysparm_fields: 'sys_id,u_start_time,u_end_time'
+    }
+  }).then(resp => {
+    console.log('Raw API Response:', resp.data.result);
+    
+    resp.data.result.forEach(r => {
+      console.log('Processing record:', r);
+      console.log('Start time:', r.u_start_time, 'End time:', r.u_end_time);
+      
+      c.data.events.push({
+        id: r.sys_id,
+        title: 'Available - Click to Book',
+        start: r.u_start_time,
+        end: r.u_end_time,
+        allDay: false,
+        backgroundColor: '#28a745',
+        borderColor: '#28a745',
+        extendedProps: {
+          timeslotId: r.sys_id,
+          doctorId: docId
+        }
+      });
+    });
+    
+    console.log('Final events array:', c.data.events);
+    
+    $timeout(() => {
+      const container = document.getElementById('calendar-' + docId);
+      if (!container || !window.FullCalendar) {
+        console.error('Calendar container or FullCalendar not found');
+        return;
+      }
+      
+      const calendar = new FullCalendar.Calendar(container, {
+        initialView: 'timeGridWeek',
+        events: c.data.events,
+        eventClick: function(info) {
+          console.log('Event clicked:', info.event);
+          
+          // Prevent default behavior
+          info.jsEvent.preventDefault();
+          
+          // Get event data
+          const timeslotId = info.event.extendedProps.timeslotId;
+          const startTime = info.event.start.toISOString();
+          const endTime = info.event.end.toISOString();
+          
+          // Redirect to booking form
+          c.bookAppointment(timeslotId, startTime, endTime);
+        },
+        eventMouseEnter: function(info) {
+          info.el.style.cursor = 'pointer';
+        },
+        eventDidMount: function(info) {
+          info.el.setAttribute('title', 'Click to book this appointment');
+          console.log('Event mounted:', info.event);
+        }
+      });
+      
+      calendar.render();
+      console.log('Calendar rendered with events:', c.data.events.length);
+    });
+  }).catch(err => console.error('Could not load slots', err));
+}
+
+DoctorAvailabilityController.$inject = ['$location', '$timeout', '$http'];
+angular.module('sn.$sp').controller('DoctorAvailabilityController', DoctorAvailabilityController);]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.calendar{
+  backgorund-color:"red"
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>doctor_availability</id>
+        <internal>false</internal>
+        <link><![CDATA[function Link() {
+  // 1) load the stylesheet
+  return loadAsset('css',
+    'https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css'
+  )
+  // 2) then load the script
+  .then(() => loadAsset('js',
+    'https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js'
+  ));
+}
+
+// simple helper; you can copy/paste this below your Link() above
+function loadAsset(type, url) {
+  return new Promise((resolve, reject) => {
+    const tag = type === 'css'? document.createElement('link'): document.createElement('script');
+    if (type === 'css') {
+      tag.rel = 'stylesheet';
+      tag.href = url;
+    } else {
+      tag.src = url;
+    }
+    tag.onload  = () => resolve();
+    tag.onerror = () => reject(`Failed to load ${url}`);
+    document.head.appendChild(tag);
+  });
+}
+]]></link>
+        <name>Doctor Availability</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+  // 1) grab the doctor sys_id from the URL (or widget option)
+  data.sys_id = options.sys_id || $sp.getParameter('sysparm_sys_id');
+  if (!data.sys_id) {
+    data.error = 'No doctor selected';
+    return;
+  }
+
+  // 2) query your timeslot table
+  var gr = new GlideRecord('x_1032697_easy_a_0_u_timeslot');
+  gr.addQuery('u_doctor', data.sys_id);
+  gr.addQuery('u_is_available', true);
+  gr.query();
+
+  // 3) build up the events array
+  data.events = [];
+  while (gr.next()) {
+    data.events.push({
+      id:    gr.getValue('sys_id'),
+      title: 'Available',
+      start: gr.getValue('u_start_time'),
+      end:   gr.getValue('u_end_time')
+    });
+  }
+})();
+]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-05-26 14:12:06</sys_created_on>
+        <sys_id>55044a3883f52a50870010c5eeaad3d1</sys_id>
+        <sys_mod_count>63</sys_mod_count>
+        <sys_name>Doctor Availability</sys_name>
+        <sys_package display_value="Easy_Appointments" source="x_1032697_easy_a_0">59e4e8ee83212e10870010c5eeaad35d</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Easy_Appointments">59e4e8ee83212e10870010c5eeaad35d</sys_scope>
+        <sys_update_name>sp_widget_55044a3883f52a50870010c5eeaad3d1</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-05-29 12:48:20</sys_updated_on>
+        <template><![CDATA[<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css">
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
+
+<div ng-if="c.data.sys_id"
+     id="calendar-{{c.data.sys_id}}"
+     class="calendar"></div>
+
+<!-- debug only: remove when working -->
+<pre>SYS_ID = {{c.data.sys_id}}</pre>
+<!-- <pre>EVENTS = {{c.data.events|json}}</pre> -->
+]]></template>
+    </sp_widget>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>55044a3883f52a50870010c5eeaad3d1</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-05-26 14:12:06</sys_created_on>
+        <sys_id>5d044a3883f52a50870010c5eeaad3d3</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-05-26 14:12:06</sys_updated_on>
+        <table>sp_widget</table>
+        <use_es_latest>true</use_es_latest>
+    </sys_es_latest_script>
+</record_update>

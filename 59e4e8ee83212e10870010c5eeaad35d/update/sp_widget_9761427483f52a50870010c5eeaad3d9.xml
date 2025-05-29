@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[function DoctorProfileController($location, $timeout) {
+  var c = this;
+
+  // either we got a demo-data/sys-id via options, or fall back to the URL
+  c.options.sys_id = c.options.sys_id || $location.search().sys_id;
+
+  $timeout(function() {
+    console.log('widget options:', c.options);
+    console.log('doctor data:', c.data.doctor);
+    if (c.data.error)
+      console.error('widget error:', c.data.error);
+  });
+}
+]]></client_script>
+        <controller_as>c</controller_as>
+        <css>/* Bump max-width to allow a wider card */
+
+.doctors {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  background-color: #B2D8CE;
+  padding: 20px;
+  border-radius: 40px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+   font-family: "Inter", sans-serif;
+  font-size: 16px;
+  color: #333;
+}
+
+
+/* Lay out img + details horizontally */
+.doctor-card {
+  display: flex;
+  align-items: flex-start;    /* top-align them */
+  gap: 2rem;                  /* optional spacing between them */
+}
+
+/* Photo: fixed width, no bottom margin when in a row */
+.doctor-photo {
+  max-width: 200px;
+  border-radius: 8px;
+  margin-right: 1rem;
+  float: left;
+}
+
+
+/* Details fill the rest of the card */
+.doctor-details {
+  flex: 1;     
+  width: 400px;  /* take up remaining space */
+}
+
+.doctor-details p {
+  margin: .5rem 0 1.25rem;
+  font-size: 16px;    
+  color: #555;
+}
+
+/* Bigger text */
+.doctor-card h2 {
+  margin-top: 0;
+  margin-bottom: .75rem;
+  font-size: 2rem;           
+  color: #2c3e50;
+}
+
+
+</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>doctor_profile</id>
+        <internal>false</internal>
+        <link/>
+        <name>Doctor Profile</name>
+        <option_schema>{&#13;
+  "sys_id": {&#13;
+    "label": "Doctor Sys ID",&#13;
+    "type": "string",&#13;
+    "default": ""&#13;
+  }&#13;
+}&#13;
+</option_schema>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+  // 1) grab the doctor sys_id from the URL
+  var docSysId = $sp.getParameter('sysparm_sys_id');
+  if (!docSysId) {
+    data.error = 'No doctor selected';
+    return;
+  }
+
+  // 2) fetch the doctor record
+  var gr = new GlideRecord('x_1032697_easy_a_0_u_doctor');
+  if (!gr.get(docSysId)) {
+    data.error = 'Doctor not found';
+    return;
+  }
+
+  // 3) build your payload
+  data.doctor = {
+    sys_id:    docSysId,
+    name:      gr.getDisplayValue('u_name'),
+    specialty: gr.getDisplayValue('u_speciality'),
+    bio:       gr.getDisplayValue('u_bio'),
+    photo:     ''   // fill below if we find one
+  };
+
+  // 4) grab the first image attachment by table_sys_id,
+//    so we don’t have to guess at the table_name prefix  
+var at = new GlideRecord('sys_attachment');
+at.addQuery('table_sys_id', docSysId);
+at.addQuery('content_type', 'STARTSWITH', 'image/');
+at.orderBy('file_name');
+at.setLimit(1);
+at.query();
+if (at.next()) {
+  // Construct the file URL for the <img> tag
+  data.doctor.photo = '/api/now/attachment/' + at.getValue('sys_id') + '/file';
+}
+})();
+]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-05-26 14:01:35</sys_created_on>
+        <sys_id>9761427483f52a50870010c5eeaad3d9</sys_id>
+        <sys_mod_count>113</sys_mod_count>
+        <sys_name>Doctor Profile</sys_name>
+        <sys_package display_value="Easy_Appointments" source="x_1032697_easy_a_0">59e4e8ee83212e10870010c5eeaad35d</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Easy_Appointments">59e4e8ee83212e10870010c5eeaad35d</sys_scope>
+        <sys_update_name>sp_widget_9761427483f52a50870010c5eeaad3d9</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-05-29 08:42:53</sys_updated_on>
+        <template><![CDATA[<div ng-if="c.data.doctor" class="doctor-card">
+  <!-- only render the <img> if we got a URL back -->
+ <img ng-if="c.data.doctor.photo"
+     ng-src="{{::c.data.doctor.photo}}"
+     alt="{{::c.data.doctor.name}}"
+     class="doctor-photo img-responsive"/>
+
+  <div class="doctor-details">
+    <h2>{{::c.data.doctor.name}}</h2>
+    <p><strong>Specialty:</strong> {{::c.data.doctor.specialty}}</p>
+    <div ng-bind-html="::c.data.doctor.bio" class="doctor-bio"></div>
+  </div>
+</div>
+
+<!-- show errors if something went wrong -->
+<div ng-if="c.data.error" class="alert alert-warning">
+  {{c.data.error}}
+</div>
+]]></template>
+    </sp_widget>
+</record_update>

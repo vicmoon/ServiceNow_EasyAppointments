@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?><database>
     <element db_object_id="10a620a283612e10870010c5eeaad31a" label="u_doctor" max_length="40" name="x_1032697_easy_a_0_u_doctor" type="collection">
-        <element label="Bio" max_length="40" name="u_bio" type="html"/>
+        <element label="Bio" max_length="400" name="u_bio" type="string"/>
         <element label="Availability" max_length="1024" name="u_availability" reference="x_1032697_easy_a_0_u_timeslot" type="glide_list"/>
         <element label="Photo" max_length="40" name="u_photo" type="file_attachment"/>
-        <element choice="1" display="true" label="Speciality" mandatory="true" max_length="40" name="u_speciality" type="choice">
+        <element choice="1" label="Speciality" mandatory="true" max_length="40" name="u_speciality" type="choice">
             <choice>
                 <element inactive_on_update="false" label="Dermatology" sequence="1" value="dermatology"/>
                 <element inactive_on_update="false" label="Cardiology" sequence="0" value="cardiology"/>
@@ -15,7 +15,7 @@
                 <element inactive_on_update="false" label="Oncology" sequence="4" value="oncology"/>
             </choice>
         </element>
-        <element label="Name" mandatory="true" max_length="100" name="u_name" type="string"/>
+        <element display="true" label="Name" mandatory="true" max_length="100" name="u_name" type="string"/>
         <element label="Active" max_length="40" name="u_active" type="boolean"/>
     </element>
 </database>
