@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="DELETE">
+        <category>custom</category>
+        <client_script><![CDATA[api.controller=function() {
+  /* widget controller */
+  var c = this;
+  c.server.update(); //overwrites the data object with new updated contents
+  console.log("User's first Name: " + c.user.first_name);
+  console.log("User's first Name: " + c.user.first_name);
+};]]></client_script>
+        <controller_as>c</controller_as>
+        <css/>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id>test_victoria</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {
+  
+}]]></link>
+        <name>Test_Widget_Victoria</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+  /* populate the 'data' object */
+  /* e.g., data.table = $sp.getValue('table'); */
+    var userRecord = new GlideRecord('sys_user');
+    userRecord.addQuery('sys_id', '328fa2b283a1ae10870010c5eeaad3e1'); //Add any other condition - This is a sample
+    userRecord.query();
+
+    var user = {}; //User's record object containing values
+
+    if(userRecord.next() && input && input.action){
+        data.user = user;
+        if(input.action == 'show'){
+            data.user.first_name = userRecord.first_name.toString();
+            data.user.last_name = userRecord.last_name.toString();
+        }
+    }
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-05-20 12:13:51</sys_created_on>
+        <sys_id>381f6e3283a1ae10870010c5eeaad338</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>Test_Widget_Victoria</sys_name>
+        <sys_package display_value="Easy_Appointments" source="x_1032697_easy_a_0">59e4e8ee83212e10870010c5eeaad35d</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Easy_Appointments">59e4e8ee83212e10870010c5eeaad35d</sys_scope>
+        <sys_update_name>sp_widget_381f6e3283a1ae10870010c5eeaad338</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-05-20 12:17:16</sys_updated_on>
+        <template><![CDATA[<div class="panel panel-default">>
+    <button type="button" class="btn btn-primary btn-block" ng-click="c.uiAction('Show')">Just Do It!</button>
+</div>
+]]></template>
+    </sp_widget>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Easy_Appointments">59e4e8ee83212e10870010c5eeaad35d</application>
+        <file_path/>
+        <instance_id>5704da2f1b6af5949377eb9b2d4bcb6b</instance_id>
+        <instance_name>dev221523</instance_name>
+        <name>sp_widget_381f6e3283a1ae10870010c5eeaad338</name>
+        <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="sp_widget"&gt;&lt;sp_widget action="INSERT_OR_UPDATE"&gt;&lt;category&gt;custom&lt;/category&gt;&lt;client_script&gt;&lt;![CDATA[api.controller=function() {
+  /* widget controller */
+  var c = this;
+  c.server.update(); //overwrites the data object with new updated contents
+  console.log("User's first Name: " + c.user.first_name);
+  console.log("User's first Name: " + c.user.first_name);
+};]]&gt;&lt;/client_script&gt;&lt;controller_as&gt;c&lt;/controller_as&gt;&lt;css/&gt;&lt;data_table&gt;sp_instance&lt;/data_table&gt;&lt;demo_data/&gt;&lt;description/&gt;&lt;docs/&gt;&lt;field_list/&gt;&lt;has_preview&gt;false&lt;/has_preview&gt;&lt;id&gt;test_victoria&lt;/id&gt;&lt;internal&gt;false&lt;/internal&gt;&lt;link&gt;&lt;![CDATA[function link(scope, element, attrs, controller) {
+  
+}]]&gt;&lt;/link&gt;&lt;name&gt;Test_Widget_Victoria&lt;/name&gt;&lt;option_schema/&gt;&lt;public&gt;false&lt;/public&gt;&lt;roles/&gt;&lt;script&gt;&lt;![CDATA[(function() {
+  /* populate the 'data' object */
+  /* e.g., data.table = $sp.getValue('table'); */
+    var userRecord = new GlideRecord('sys_user');
+    userRecord.addQuery('sys_id', '328fa2b283a1ae10870010c5eeaad3e1'); //Add any other condition - This is a sample
+    userRecord.query();
+
+    var user = {}; //User's record object containing values
+
+    if(userRecord.next() &amp;&amp; input &amp;&amp; input.action){
+        data.user = user;
+        if(input.action == 'show'){
+            data.user.first_name = userRecord.first_name.toString();
+            data.user.last_name = userRecord.last_name.toString();
+        }
+    }
+})();]]&gt;&lt;/script&gt;&lt;servicenow&gt;false&lt;/servicenow&gt;&lt;sys_class_name&gt;sp_widget&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2025-05-20 12:13:51&lt;/sys_created_on&gt;&lt;sys_id&gt;381f6e3283a1ae10870010c5eeaad338&lt;/sys_id&gt;&lt;sys_mod_count&gt;1&lt;/sys_mod_count&gt;&lt;sys_name&gt;Test_Widget_Victoria&lt;/sys_name&gt;&lt;sys_package display_value="Easy_Appointments" source="x_1032697_easy_a_0"&gt;59e4e8ee83212e10870010c5eeaad35d&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_scope display_value="Easy_Appointments"&gt;59e4e8ee83212e10870010c5eeaad35d&lt;/sys_scope&gt;&lt;sys_update_name&gt;sp_widget_381f6e3283a1ae10870010c5eeaad338&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2025-05-20 12:17:16&lt;/sys_updated_on&gt;&lt;template&gt;&lt;![CDATA[&lt;div class="panel panel-default"&gt;&gt;
+    &lt;button type="button" class="btn btn-primary btn-block" ng-click="c.uiAction('Show')"&gt;Just Do It!&lt;/button&gt;
+&lt;/div&gt;
+]]&gt;&lt;/template&gt;&lt;/sp_widget&gt;&lt;/record_update&gt;</payload>
+        <payload_hash>2104595302</payload_hash>
+        <record_name>Test_Widget_Victoria</record_name>
+        <reverted_from/>
+        <source>cdeaaea2832d2e10870010c5eeaad398</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-05-20 12:17:16</sys_created_on>
+        <sys_id>e43072f283a1ae10870010c5eeaad315</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>196eda06d910000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-05-20 12:17:16</sys_updated_on>
+        <type>Widget</type>
+        <update_guid>ac3072f297a1ae10261906602075b714</update_guid>
+        <update_guid_history>ac3072f297a1ae10261906602075b714:2104595302,a66f6efe1561ae10b54be855ded4ffa9:1441959182</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="Test_Widget_Victoria">1e6e8dbd83f56e50870010c5eeaad3b2</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-05-29 12:51:49</sys_created_on>
+        <sys_db_object display_value="" name="sp_widget">sp_widget</sys_db_object>
+        <sys_id>00ac74bbcd9047d0b0bb51a073986790</sys_id>
+        <sys_metadata>381f6e3283a1ae10870010c5eeaad338</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Test_Widget_Victoria</sys_name>
+        <sys_package display_value="Easy_Appointments" source="x_1032697_easy_a_0">59e4e8ee83212e10870010c5eeaad35d</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Easy_Appointments">59e4e8ee83212e10870010c5eeaad35d</sys_scope>
+        <sys_scope_delete display_value="">0680a9daf3c8467f80476c6fa3c15721</sys_scope_delete>
+        <sys_update_name>sp_widget_381f6e3283a1ae10870010c5eeaad338</sys_update_name>
+        <sys_update_version display_value="sp_widget_381f6e3283a1ae10870010c5eeaad338">e43072f283a1ae10870010c5eeaad315</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-05-29 12:51:49</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

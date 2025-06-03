@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_instance_vlist">
+    <sp_instance_vlist action="DELETE">
+        <active>true</active>
+        <class_name/>
+        <color>default</color>
+        <css/>
+        <display_field/>
+        <field_list/>
+        <filter/>
+        <glyph/>
+        <id/>
+        <maximum_entries>5</maximum_entries>
+        <order>1</order>
+        <order_by/>
+        <order_direction>asc</order_direction>
+        <roles/>
+        <short_description/>
+        <size>md</size>
+        <sp_column display_value="1">c72971c383f52210870010c5eeaad32f</sp_column>
+        <sp_page/>
+        <sp_widget display_value="My list filters">dbc4afa2876723003c1c8467a7cb0be5</sp_widget>
+        <sys_class_name>sp_instance_vlist</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-06-02 13:11:16</sys_created_on>
+        <sys_id>8639794f83f52210870010c5eeaad384</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="Easy_Appointments" source="x_1032697_easy_a_0">59e4e8ee83212e10870010c5eeaad35d</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Easy_Appointments">59e4e8ee83212e10870010c5eeaad35d</sys_scope>
+        <sys_update_name>sp_instance_vlist_8639794f83f52210870010c5eeaad384</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-06-02 13:11:16</sys_updated_on>
+        <table/>
+        <title/>
+        <url/>
+        <widget_parameters/>
+    </sp_instance_vlist>
+    <sys_translated_text action="DELETE" query="documentkey=8639794f83f52210870010c5eeaad384"/>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Easy_Appointments">59e4e8ee83212e10870010c5eeaad35d</application>
+        <file_path/>
+        <instance_id>5704da2f1b6af5949377eb9b2d4bcb6b</instance_id>
+        <instance_name>dev221523</instance_name>
+        <name>sp_instance_vlist_8639794f83f52210870010c5eeaad384</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_instance_vlist"><sp_instance_vlist action="INSERT_OR_UPDATE"><active>true</active><class_name/><color>default</color><css/><display_field/><field_list/><filter/><glyph/><id/><maximum_entries>5</maximum_entries><order>1</order><order_by/><order_direction>asc</order_direction><roles/><short_description/><size>md</size><sp_column display_value="1">c72971c383f52210870010c5eeaad32f</sp_column><sp_page/><sp_widget display_value="My list filters">dbc4afa2876723003c1c8467a7cb0be5</sp_widget><sys_class_name>sp_instance_vlist</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2025-06-02 13:11:16</sys_created_on><sys_id>8639794f83f52210870010c5eeaad384</sys_id><sys_mod_count>0</sys_mod_count><sys_name/><sys_package display_value="Easy_Appointments" source="x_1032697_easy_a_0">59e4e8ee83212e10870010c5eeaad35d</sys_package><sys_policy/><sys_scope display_value="Easy_Appointments">59e4e8ee83212e10870010c5eeaad35d</sys_scope><sys_update_name>sp_instance_vlist_8639794f83f52210870010c5eeaad384</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2025-06-02 13:11:16</sys_updated_on><table/><title/><url/><widget_parameters/></sp_instance_vlist><sys_translated_text action="delete_multiple" query="documentkey=8639794f83f52210870010c5eeaad384"/></record_update>]]></payload>
+        <payload_hash>531051421</payload_hash>
+        <record_name/>
+        <reverted_from/>
+        <source>cdeaaea2832d2e10870010c5eeaad398</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-06-02 13:11:16</sys_created_on>
+        <sys_id>ce39794f83f52210870010c5eeaad386</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>19730c4899b0000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-06-02 13:11:16</sys_updated_on>
+        <type>Instance of Simple List</type>
+        <update_guid>c239794f2af52210660a8d283f57c186</update_guid>
+        <update_guid_history>c239794f2af52210660a8d283f57c186:531051421</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="">c649fd8f83f52210870010c5eeaad390</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-06-02 13:11:32</sys_created_on>
+        <sys_db_object display_value="" name="sp_instance_vlist">sp_instance_vlist</sys_db_object>
+        <sys_id>9cf0cf2b85df41af95d06ac120e06e01</sys_id>
+        <sys_metadata>8639794f83f52210870010c5eeaad384</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="Easy_Appointments" source="x_1032697_easy_a_0">59e4e8ee83212e10870010c5eeaad35d</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Easy_Appointments">59e4e8ee83212e10870010c5eeaad35d</sys_scope>
+        <sys_scope_delete display_value="">0680a9daf3c8467f80476c6fa3c15721</sys_scope_delete>
+        <sys_update_name>sp_instance_vlist_8639794f83f52210870010c5eeaad384</sys_update_name>
+        <sys_update_version display_value="sp_instance_vlist_8639794f83f52210870010c5eeaad384">ce39794f83f52210870010c5eeaad386</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-06-02 13:11:32</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

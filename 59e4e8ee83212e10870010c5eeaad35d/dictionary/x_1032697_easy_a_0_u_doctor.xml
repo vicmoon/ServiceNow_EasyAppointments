@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?><database>
     <element db_object_id="10a620a283612e10870010c5eeaad31a" label="u_doctor" max_length="40" name="x_1032697_easy_a_0_u_doctor" type="collection">
         <element label="Bio" max_length="400" name="u_bio" type="string"/>
-        <element label="Availability" max_length="1024" name="u_availability" reference="x_1032697_easy_a_0_u_timeslot" type="glide_list"/>
+        <element choice="3" label="Availability" max_length="1024" name="u_availability" reference="x_1032697_easy_a_0_u_timeslot" type="glide_list">
+            <choice/>
+        </element>
         <element label="Photo" max_length="40" name="u_photo" type="file_attachment"/>
         <element choice="1" label="Speciality" mandatory="true" max_length="40" name="u_speciality" type="choice">
             <choice>

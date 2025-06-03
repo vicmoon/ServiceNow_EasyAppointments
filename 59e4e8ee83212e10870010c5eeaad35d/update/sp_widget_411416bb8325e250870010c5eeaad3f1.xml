@@ -42,128 +42,7 @@
 DoctorListController.$inject = ['$http', '$location', '$window'];
 ]]></client_script>
         <controller_as>c</controller_as>
-        <css>/* Container */
-.doctor-list-widget {
-  max-width: 1800px;
-  margin: 2rem auto;
-  padding: 0 1rem;
-  font-family: sans-serif;
-}
-
-/* Loading spinner */
-.doctor-list-widget .loading-spinner {
-  text-align: center;
-  color: #3498db;
-  padding: 2rem 0;
-  font-size: 1.25rem;
-}
-
-/* Error alert */
-.doctor-list-widget .alert-danger {
-  max-width: 600px;
-  margin: 1.5rem auto;
-  padding: 1rem;
-  border-radius: 6px;
-  background: #fdecea;
-  color: #a94442;
-  display: flex;
-  align-items: center;
-}
-.doctor-list-widget .alert-danger .fa-exclamation-circle {
-  margin-right: .5rem;
-  font-size: 1.5rem;
-}
-
-/* Empty state */
-.doctor-list-widget .empty-state {
-  text-align: center;
-  color: #777;
-  padding: 3rem 1rem;
-}
-.doctor-list-widget .empty-state .fa-user-md {
-  font-size: 3rem;
-  margin-bottom: .5rem;
-  color: #ccc;
-}
-.doctor-list-widget .empty-state p {
-  margin: .5rem 0 0;
-  font-size: 1.1rem;
-}
-
-/* Panel header */
-.doctor-list-widget .panel-primary &gt; .panel-heading {
-  background-color: #2c3e50;
-  border-color: #2c3e50;
-  color: #fff;
-  border-top-left-radius: 6px;
-  border-top-right-radius: 6px;
-}
-.doctor-list-widget .panel-primary .panel-title {
-  margin: 0;
-  font-size: 1.5rem;
-}
-
-/* Grid layout for cards */
-.doctor-list-widget .panel-body .row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.5rem;           /* space between cards */
-  justify-content: flex-start;
-}
-
-/* Make each col behave as a flex item with a 3-up baseline */
-.doctor-list-widget .panel-body .row &gt; .col-md-4,
-.doctor-list-widget .panel-body .row &gt; .col-sm-6 {
-  flex: 1 1 calc(33.333% - 1.5rem);
-  max-width: calc(33.333% - 1.5rem);
-}
-
-.doctor-list-widget .doctor-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
-}
-
-/* Card heading */
-.doctor-list-widget .doctor-card .panel-heading {
-  background: #fff;
-  border-bottom: none;
-  padding: 1rem;
-}
-.doctor-list-widget .doctor-card .doctor-name {
-  margin: 0;
-  font-size: 1.25rem;
-  color: #2c3e50;
-}
-
-/* Card body */
-.doctor-list-widget .doctor-card .panel-body {
-  flex: 1;
-  padding: 1rem;
-}
-.doctor-list-widget .doctor-card p {
-  margin: .5rem 0 1rem;
-  color: #555;
-}
-
-/* View Profile button */
-.doctor-list-widget .doctor-card .btn-primary {
-  background-color: #3498db;
-  border-color: #3498db;
-  padding: .5rem 1rem;
-  border-radius: 4px;
-  font-size: .95rem;
-  transition: background-color .2s ease, transform .2s ease;
-}
-.doctor-list-widget .doctor-card .btn-primary .fa-user {
-  margin-right: .25rem;
-}
-.doctor-list-widget .doctor-card .btn-primary:hover {
-  background-color: #2980b9;
-  transform: translateY(-2px);
-}
-
-
-</css>
+        <css/>
         <data_table>sp_instance_vlist</data_table>
         <demo_data/>
         <description/>
@@ -183,14 +62,14 @@ DoctorListController.$inject = ['$http', '$location', '$window'];
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2025-05-23 12:48:21</sys_created_on>
         <sys_id>411416bb8325e250870010c5eeaad3f1</sys_id>
-        <sys_mod_count>26</sys_mod_count>
+        <sys_mod_count>27</sys_mod_count>
         <sys_name>Doctors_list</sys_name>
         <sys_package display_value="Easy_Appointments" source="x_1032697_easy_a_0">59e4e8ee83212e10870010c5eeaad35d</sys_package>
         <sys_policy/>
         <sys_scope display_value="Easy_Appointments">59e4e8ee83212e10870010c5eeaad35d</sys_scope>
         <sys_update_name>sp_widget_411416bb8325e250870010c5eeaad3f1</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-05-28 13:47:04</sys_updated_on>
+        <sys_updated_on>2025-06-02 14:35:06</sys_updated_on>
         <template><![CDATA[<div class="doctor-list-widget">
   <!-- Loading -->
   <div ng-if="c.loading" class="loading-spinner">

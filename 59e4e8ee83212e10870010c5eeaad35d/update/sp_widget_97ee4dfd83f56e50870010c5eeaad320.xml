@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[function DoctorBookingFormController($scope, $http, $window) {
+    var c = this;
+    c.submitting = false;
+    c.patient = {};
+    
+    //console.log('=== BOOKING FORM DEBUG ===');
+   //console.log('All URL params:', $scope.data);
+    //console.log('Doctor ID:', $scope.data.doctorId);
+   //console.log('Timeslot ID:', $scope.data.timeslotId);
+    //console.log('Start time:', $scope.data.start);
+   //console.log('End time:', $scope.data.end);
+    
+    // FIXED: Get parameters from $scope.data instead of $scope.data.doctorName
+    c.doctorName = $scope.data.doctorName || 'Loading...';
+    c.timeslotId = $scope.data.timeslotId;
+    c.start = $scope.data.start;
+    c.end = $scope.data.end;
+    
+    // FIXED: Add null checks before creating Date objects
+    if (c.start) {
+        c.start = new Date(c.start);
+    }
+    if (c.end) {
+        c.end = new Date(c.end);
+    }
+	
+	
+   // console.log('=== SUBMISSION FORM DEBUG ===');
+   // console.log('Processed values:');
+   // console.log('Doctor name:', c.doctorName);
+   // console.log('Timeslot ID:', c.timeslotId);
+   // console.log('Start date object:', c.start);
+    //console.log('End date object:', c.end);
+    
+c.submit = function() {
+    console.log('Form submitted with patient data:', c.patient);
+    c.submitting = true;
+    
+    // First, create or find the patient
+    $http.post('/api/now/table/x_1032697_easy_a_0_u_patient', {
+        u_name: c.patient.name,
+        u_phone: c.patient.contact,  
+        u_email: c.patient.email    
+    }).then(function(patientResponse) {
+        // Now create the appointment with the patient's sys_id
+        return $http.post('/api/now/table/x_1032697_easy_a_0_u_appointment', {
+            u_doctor: $scope.data.doctorId,
+            u_patient: patientResponse.data.result.sys_id,  // Use patient sys_id
+            u_notes: c.patient.reason,
+            u_timeslot: c.timeslotId,
+            u_status: 'Pending'
+        });
+    }).then(function(appointmentResponse) {
+        console.log('Booking successful:', appointmentResponse);
+        c.submitting = false;
+			// Show success message 
+			  c.successMessage = 'Appointment booked successfully';
+			// Show success message redirect 
+			  setTimeout(function(){
+					$window.location.href = '/sp?id=my_appointments';
+				}, 2000); 
+			
+    }).catch(function(error) {
+        console.error('Booking failed:', error);
+        c.submitting = false;
+    });
+};
+	
+	console.log('Server debug data:', $scope.data.debug);
+}
+]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.booking-form {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  color: #333;
+
+  h3 {
+    margin-bottom: 1.5rem;
+    font-size: 1.75rem;
+    text-align: center;
+    color: #0056b3;
+  }
+
+  .details {
+    margin-bottom: 1.5rem;
+    p {
+      margin: 0.25rem 0;
+      strong { color: #0056b3; }
+    }
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+
+    &gt; div {
+      margin-bottom: 1rem;
+
+      label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+        font-size: 0.95rem;
+      }
+
+      input,
+      textarea {
+        width: 100%;
+        padding: 0.6rem 0.75rem;
+        border: 1px solid #ccc;
+        border-radius: 0.375rem;
+        font-size: 1rem;
+        transition: border-color 0.2s;
+
+        &amp;:focus {
+          outline: none;
+          border-color: #0056b3;
+        }
+      }
+
+      textarea {
+        min-height: 100px;
+        resize: vertical;
+      }
+    }
+
+    button {
+      align-self: flex-start;
+      background-color: #0056b3;
+      color: #fff;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 0.375rem;
+      cursor: pointer;
+      transition: background-color 0.2s;
+
+      &amp;:hover:not(:disabled) {
+        background-color: #004494;
+      }
+
+      &amp;:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  .message {
+    margin-top: 1.5rem;
+    padding: 0.75rem 1rem;
+    background-color: #e6ffed;
+    border: 1px solid #28a745;
+    border-radius: 0.375rem;
+    color: #155724;
+  }
+}
+</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>doctor_booking_form</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>Doctor Booking Form</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[// Server Script - Detailed debugging for doctor name
+(function() {
+    // Map URL parameters
+    data.doctorId = $sp.getParameter('sysparm_sys_id');
+    data.timeslotId = $sp.getParameter('sysparm_timeslot');  
+    data.start = $sp.getParameter('sysparm_start');
+    data.end = $sp.getParameter('sysparm_end');
+    
+    gs.info('=== DOCTOR NAME DEBUG ===');
+    gs.info('Looking for doctor with sys_id: ' + data.doctorId);
+    
+    if (data.doctorId) {
+        var doctorGR = new GlideRecord('x_1032697_easy_a_0_u_doctor');
+        
+        // Debug: Check if the record exists
+       // gs.info('Querying table: x_1032697_easy_a_0_u_doctor');
+        
+        if (doctorGR.get(data.doctorId)) {
+            //gs.info('✓ Doctor record found!');
+            
+            // Debug: Check what fields are available
+          //  gs.info('Record sys_id: ' + doctorGR.getValue('sys_id'));
+            
+            // Try different ways to get the name
+            var nameValue = doctorGR.getValue('u_name');
+            var nameDisplayValue = doctorGR.getDisplayValue('u_name');
+            var nameRaw = doctorGR.u_name;
+            
+           // gs.info('u_name getValue(): ' + nameValue);
+           // gs.info('u_name getDisplayValue(): ' + nameDisplayValue);  
+           // gs.info('u_name direct access: ' + nameRaw);
+            
+            // Check if u_name field exists and has data
+            if (nameValue) {
+                data.doctorName = nameValue;
+                gs.info('✓ Using getValue() result: ' + data.doctorName);
+            } else if (nameDisplayValue) {
+                data.doctorName = nameDisplayValue;
+                //gs.info('✓ Using getDisplayValue() result: ' + data.doctorName);
+            } else if (nameRaw) {
+                data.doctorName = nameRaw.toString();
+                //gs.info('✓ Using direct access result: ' + data.doctorName);
+            } else {
+                // List all available fields to see what's there
+                //gs.info('❌ u_name field appears to be empty');
+               // gs.info('Available fields on this record:');
+                
+                // Try some common name fields
+                var commonFields = ['name', 'u_first_name', 'u_last_name', 'display_value'];
+                for (var i = 0; i < commonFields.length; i++) {
+                    var field = commonFields[i];
+                    var value = doctorGR.getValue(field);
+                    if (value) {
+                        gs.info('  ' + field + ': ' + value);
+                    }
+                }
+                
+                data.doctorName = 'Name field empty';
+            }
+            
+        } else {
+            gs.info('❌ No doctor record found with sys_id: ' + data.doctorId);
+            
+            // Debug: Let's see if the table exists and has any records
+            var testGR = new GlideRecord('x_1032697_easy_a_0_u_doctor');
+            testGR.setLimit(1);
+            testGR.query();
+            
+            if (testGR.next()) {
+                gs.info('✓ Table exists and has records');
+                gs.info('Sample record sys_id: ' + testGR.getValue('sys_id'));
+            } else {
+                gs.info('❌ Table is empty or doesn\'t exist');
+            }
+            
+            data.doctorName = 'Record not found';
+        }
+        
+    } else {
+        gs.info('❌ No doctor ID provided');
+        data.doctorName = 'No Doctor ID';
+    }
+    
+    gs.info('Final result - doctorName: ' + data.doctorName);
+    
+    // Also send debug info to client for easier viewing
+    data.debugInfo = {
+        doctorId: data.doctorId,
+        doctorName: data.doctorName,
+        timestamp: new Date().toString()
+    };
+})();
+
+// Add this to your Client Script to see the debug info in browser console:
+/*
+console.log('=== CLIENT DEBUG INFO ===');
+console.log('Debug info from server:', $scope.data.debugInfo);
+console.log('Doctor name received:', $scope.data.doctorName);
+*/]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-05-29 12:54:04</sys_created_on>
+        <sys_id>97ee4dfd83f56e50870010c5eeaad320</sys_id>
+        <sys_mod_count>37</sys_mod_count>
+        <sys_name>Doctor Booking Form</sys_name>
+        <sys_package display_value="Easy_Appointments" source="x_1032697_easy_a_0">59e4e8ee83212e10870010c5eeaad35d</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Easy_Appointments">59e4e8ee83212e10870010c5eeaad35d</sys_scope>
+        <sys_update_name>sp_widget_97ee4dfd83f56e50870010c5eeaad320</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-06-02 13:23:08</sys_updated_on>
+        <template><![CDATA[<div class="booking-form" ng-controller="DoctorBookingFormController as c">
+ 
+
+  <!-- Display booking details -->
+  
+  <div ng-if="c.successMessage" class="alert alert-success">
+    {{c.successMessage}}
+</div>
+  <div class="details">
+    <p><strong>Doctor:</strong> {{ c.data.doctorName }}</p>
+    <p><strong>When:</strong> {{ c.start | date:'medium' }} – {{ c.end | date:'medium' }}</p>
+  </div>
+
+  <!-- Patient information form -->
+  <form name="bookingForm" ng-submit="c.submit()" novalidate>
+    <div>
+      <label for="patientName">Your Name</label>
+      <input id="patientName" type="text" ng-model="c.patient.name" placeholder="Name" required />
+    </div>
+    <div>
+      <label for="contact">Contact Details</label>
+      <input id="contact" type="text" ng-model="c.patient.contact" placeholder="Phone"  />
+      <input id="email" type="text" ng-model="c.patient.email" placeholder="Email"  />
+    </div>
+    <div>
+      <label for="reason">Reason for Visit</label>
+      <textarea id="reason" ng-model="c.patient.reason" required></textarea>
+    </div>
+    <button type="submit" ng-disabled="bookingForm.$invalid || c.submitting">Submit</button>
+  </form>
+
+  <div ng-if="c.message" class="message">{{ c.message }}</div>
+</div>]]></template>
+    </sp_widget>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>97ee4dfd83f56e50870010c5eeaad320</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-05-29 12:54:04</sys_created_on>
+        <sys_id>97ee4dfd83f56e50870010c5eeaad323</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-05-29 12:54:04</sys_updated_on>
+        <table>sp_widget</table>
+        <use_es_latest>true</use_es_latest>
+    </sys_es_latest_script>
+</record_update>

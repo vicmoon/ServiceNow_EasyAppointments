@@ -4,50 +4,73 @@
         <client_script><![CDATA[function DoctorAvailabilityController($location, $timeout, $http) {
   var c = this;
   const docId = $location.search().sysparm_sys_id;
-  
+	
   console.log('Doctor ID from URL:', docId);
-  
+	
   if (!docId) {
     console.error('No sysparm_sys_id');
     return;
   }
-  
   c.data = { sys_id: docId, events: [] };
-  
-  // Simplified booking function - just redirect
+	
+  // Fixed booking function with proper debugging
   c.bookAppointment = function(timeslotId, startTime, endTime) {
-    console.log('Redirecting to booking form:', { timeslotId, startTime, endTime });
+    console.log('=== BOOKING DEBUG ===');
+    console.log('timeslotId:', timeslotId);
+    console.log('startTime:', startTime);
+    console.log('endTime:', endTime);
+    console.log('docId:', docId);
     
-    // Build the redirect URL with parameters
-    const bookingUrl = `/sp?id=booking_form&doctor=${docId}&timeslot=${timeslotId}&start=${encodeURIComponent(startTime)}&end=${encodeURIComponent(endTime)}`;
+    // Handle the case where timeslotId might be undefined
+    const actualTimeslotId = timeslotId || 'unknown';
     
-    console.log('Redirecting to:', bookingUrl);
-    window.location.href = bookingUrl;
+    // Format dates properly if they're Date objects
+    let formattedStartTime = startTime;
+    let formattedEndTime = endTime;
+    
+    if (startTime instanceof Date) {
+      formattedStartTime = startTime.toISOString();
+    }
+    if (endTime instanceof Date) {
+      formattedEndTime = endTime.toISOString();
+    }
+    
+    const baseUrl = '/sp';
+    const url = new URL(baseUrl, window.location.origin);
+    
+    url.searchParams.set('id', 'doctor_booking_form');
+    url.searchParams.set('sysparm_sys_id', docId);
+    url.searchParams.set('sysparm_timeslot', actualTimeslotId);
+    url.searchParams.set('sysparm_start', formattedStartTime);
+    url.searchParams.set('sysparm_end', formattedEndTime);
+    
+    console.log('Final URL:', url.href);
+    window.location.href = url.href;
   };
-  
+
   $http.get('/api/now/table/x_1032697_easy_a_0_u_timeslot', {
     params: {
-      sysparm_query: `u_doctor=${docId}^u_is_available=true`,
-      sysparm_fields: 'sys_id,u_start_time,u_end_time'
+      sysparm_query: `u_is_available=true`,
+      sysparm_fields: 'sys_id,u_doctor,u_start_time,u_end_time,u_is_available'
     }
   }).then(resp => {
     console.log('Raw API Response:', resp.data.result);
     
     resp.data.result.forEach(r => {
       console.log('Processing record:', r);
-      console.log('Start time:', r.u_start_time, 'End time:', r.u_end_time);
       
+      // FIXED: Store the sys_id as the event ID and in extendedProps
       c.data.events.push({
-        id: r.sys_id,
-        title: 'Available - Click to Book',
+        id: r.sys_id,                    // This becomes info.event.id
+        title: 'Available',
         start: r.u_start_time,
         end: r.u_end_time,
         allDay: false,
         backgroundColor: '#28a745',
         borderColor: '#28a745',
+        // FIXED: Add the timeslot ID in extendedProps
         extendedProps: {
-          timeslotId: r.sys_id,
-          doctorId: docId
+          timeslotId: r.sys_id           // This is what you were missing!
         }
       });
     });
@@ -64,26 +87,42 @@
       const calendar = new FullCalendar.Calendar(container, {
         initialView: 'timeGridWeek',
         events: c.data.events,
+        
+        // FIXED: Proper event click handler
         eventClick: function(info) {
-          console.log('Event clicked:', info.event);
+          console.log('=== EVENT CLICK DEBUG ===');
+          console.log('Full event object:', info.event);
+          console.log('Event ID:', info.event.id);
+          console.log('Event start:', info.event.start);
+          console.log('Event end:', info.event.end);
+          console.log('Extended props:', info.event.extendedProps);
           
           // Prevent default behavior
           info.jsEvent.preventDefault();
           
-          // Get event data
-          const timeslotId = info.event.extendedProps.timeslotId;
-          const startTime = info.event.start.toISOString();
-          const endTime = info.event.end.toISOString();
+          // FIXED: Get the correct values
+          const timeslotId = info.event.id; // Use the event ID (which is sys_id)
+          const startTime = info.event.start;
+          const endTime = info.event.end;
           
-          // Redirect to booking form
+          console.log('Calling bookAppointment with:', {
+            timeslotId,
+            startTime,
+            endTime
+          });
+          
+          // Call booking function
           c.bookAppointment(timeslotId, startTime, endTime);
         },
+        
+        // Optional: Change cursor on hover
         eventMouseEnter: function(info) {
           info.el.style.cursor = 'pointer';
         },
+        
+        // Optional: Add tooltip
         eventDidMount: function(info) {
           info.el.setAttribute('title', 'Click to book this appointment');
-          console.log('Event mounted:', info.event);
         }
       });
       
@@ -91,10 +130,7 @@
       console.log('Calendar rendered with events:', c.data.events.length);
     });
   }).catch(err => console.error('Could not load slots', err));
-}
-
-DoctorAvailabilityController.$inject = ['$location', '$timeout', '$http'];
-angular.module('sn.$sp').controller('DoctorAvailabilityController', DoctorAvailabilityController);]]></client_script>
+}]]></client_script>
         <controller_as>c</controller_as>
         <css>.calendar{
   backgorund-color:"red"
@@ -169,14 +205,14 @@ function loadAsset(type, url) {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2025-05-26 14:12:06</sys_created_on>
         <sys_id>55044a3883f52a50870010c5eeaad3d1</sys_id>
-        <sys_mod_count>63</sys_mod_count>
+        <sys_mod_count>72</sys_mod_count>
         <sys_name>Doctor Availability</sys_name>
         <sys_package display_value="Easy_Appointments" source="x_1032697_easy_a_0">59e4e8ee83212e10870010c5eeaad35d</sys_package>
         <sys_policy/>
         <sys_scope display_value="Easy_Appointments">59e4e8ee83212e10870010c5eeaad35d</sys_scope>
         <sys_update_name>sp_widget_55044a3883f52a50870010c5eeaad3d1</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-05-29 12:48:20</sys_updated_on>
+        <sys_updated_on>2025-05-30 13:58:47</sys_updated_on>
         <template><![CDATA[<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css">
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
 
@@ -185,7 +221,7 @@ function loadAsset(type, url) {
      class="calendar"></div>
 
 <!-- debug only: remove when working -->
-<pre>SYS_ID = {{c.data.sys_id}}</pre>
+<!--<pre>SYS_ID = {{c.data.sys_id}}</pre> -->
 <!-- <pre>EVENTS = {{c.data.events|json}}</pre> -->
 ]]></template>
     </sp_widget>

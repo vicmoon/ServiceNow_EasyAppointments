@@ -98,6 +98,34 @@
             <sys_user/>
             <type>.end_split</type>
         </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>u_display_name</element>
+            <position>7</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2025-06-02 12:20:30</sys_created_on>
+            <sys_id>6e9de58f83b52210870010c5eeaad394</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_1032697_easy_a_0_u_timeslot" sys_domain="global" view="Default view">798aa8e683612e10870010c5eeaad373</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2025-06-02 12:20:30</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>time_period</element>
+            <position>8</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2025-06-02 12:24:03</sys_created_on>
+            <sys_id>2a6ea50383f52210870010c5eeaad31a</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_1032697_easy_a_0_u_timeslot" sys_domain="global" view="Default view">798aa8e683612e10870010c5eeaad373</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2025-06-02 12:24:03</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
         <sys_ui_section action="INSERT_OR_UPDATE">
             <caption/>
             <header>false</header>

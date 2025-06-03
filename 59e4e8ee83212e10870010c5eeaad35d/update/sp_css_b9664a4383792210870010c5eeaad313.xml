@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_css">
+    <sp_css action="INSERT_OR_UPDATE">
+        <css>/* ===================================================================&#13;
+   12. Doctor List Widget – Pastel &amp; Rounded Edges&#13;
+   -------------------------------------------------------------&#13;
+   Replace the previous retro section with this pastel‐rounded look.&#13;
+   =================================================================== */&#13;
+body{&#13;
+   background-color: #cfe8f2;&#13;
+}&#13;
+.doctor-list-widget {&#13;
+  background-color: #cfe8f2;        /* Light pastel‐blue outer background */&#13;
+  padding: 24px;&#13;
+  border-radius: 12px;              /* More rounding on the outer container */&#13;
+  font-family: "Georgia", serif;    /* Keep a friendly serif for headings/body */&#13;
+  color: #3e3e3e;&#13;
+}&#13;
+&#13;
+/* Loading Spinner */&#13;
+.doctor-list-widget .loading-spinner {&#13;
+  text-align: center;&#13;
+  padding: 40px 0;&#13;
+}&#13;
+.doctor-list-widget .loading-spinner .fa-spinner {&#13;
+  color: #7d6fce;   /* Pastel purple spinner */&#13;
+}&#13;
+&#13;
+/* Error Alert */&#13;
+.doctor-list-widget .alert.alert-danger {&#13;
+  background-color: #fce9e8;      /* Very pale pink/cream */&#13;
+  color: #a84f4a;                 /* Soft burgundy text */&#13;
+  border: 1px solid #f2c7c5;      /* Light rose border */&#13;
+  border-radius: 8px;&#13;
+  padding: 12px 16px;&#13;
+  margin-bottom: 16px;&#13;
+  font-size: 0.95rem;&#13;
+}&#13;
+.doctor-list-widget .alert.alert-danger .fa-exclamation-circle {&#13;
+  margin-right: 6px;&#13;
+  color: #a84f4a;&#13;
+}&#13;
+&#13;
+/* Empty State */&#13;
+.doctor-list-widget .empty-state {&#13;
+  text-align: center;&#13;
+  color: #6b6b6b;                    /* Medium‐grey */&#13;
+  font-size: 1.2rem;&#13;
+  margin: 40px 0;&#13;
+}&#13;
+.doctor-list-widget .empty-state .fa-user-md {&#13;
+  font-size: 2rem;&#13;
+  margin-bottom: 12px;&#13;
+  color: #7d6fce;   /* Same pastel purple accent */&#13;
+}&#13;
+&#13;
+/* Outer Panel (Found X Doctors) */&#13;
+.doctor-list-widget .panel.panel-primary {&#13;
+  background-color: #f9f7ef;      /* Soft cream interior */&#13;
+  border: none;                   /* Remove default Bootstrap border */&#13;
+  border-radius: 12px;            /* Round all corners */&#13;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);&#13;
+  margin-bottom: 24px;&#13;
+  overflow: hidden;               /* Ensure heading’s rounded corners stay clean */&#13;
+}&#13;
+&#13;
+/* Panel Heading (Pastel purple bar with rounded top corners) */&#13;
+.doctor-list-widget .panel.panel-primary .panel-heading {&#13;
+  background-color: #b599e2;      /* Pastel‐purple heading bar */&#13;
+  color: #fff;                    /* White heading text */&#13;
+  padding: 12px 16px;&#13;
+  font-family: "Georgia", serif;&#13;
+  font-size: 1.25rem;&#13;
+  border-radius: 12px 12px 0 0;   /* Only top corners rounded */&#13;
+  margin: 0;                      /* Remove any default margins */&#13;
+  border-bottom: none;&#13;
+}&#13;
+&#13;
+/* If you use &lt;h3 class="panel-title"&gt;…&lt;/h3&gt; inside the heading: */&#13;
+.doctor-list-widget .panel.panel-primary .panel-heading h3.panel-title {&#13;
+  margin: 0;&#13;
+  color: #fff;&#13;
+  font-weight: normal;            /* Keep it soft rather than bold */&#13;
+}&#13;
+&#13;
+/* Panel Body (holds the grid of cards) */&#13;
+.doctor-list-widget .panel.panel-primary .panel-body {&#13;
+  background-color: #fdfcf7;      /* Slightly off‐white, pastel cream */&#13;
+  padding: 16px;&#13;
+}&#13;
+&#13;
+/* ——————————————————————————————————————————————————————————————&#13;
+   Doctor Card (ng-repeat="doc in c.doctors")&#13;
+   —————————————————————————————————————————————————————————————— */&#13;
+&#13;
+/* Overriding Bootstrap’s panel‐default */&#13;
+.doctor-list-widget .doctor-card.panel.panel-default {&#13;
+  background-color: #fdfcf7;      /* Pastel cream */&#13;
+  border: none;                   /* Remove default border */&#13;
+  border-radius: 12px;            /* Round all edges */&#13;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);&#13;
+  transition: transform 0.2s ease-in-out;&#13;
+  margin-bottom: 20px;&#13;
+  overflow: hidden;               /* For heading radius to clip nicely */&#13;
+}&#13;
+&#13;
+.doctor-list-widget .doctor-card.panel.panel-default:hover {&#13;
+  transform: translateY(-4px);&#13;
+}&#13;
+&#13;
+/* Doctor Card Heading */&#13;
+.doctor-list-widget .doctor-card .panel-heading {&#13;
+  background-color: #b599e2;      /* Same pastel purple */&#13;
+  color: #fff;                    /* White text */&#13;
+  padding: 10px 14px;&#13;
+  font-family: "Georgia", serif;&#13;
+  font-size: 1.1rem;&#13;
+  border-radius: 12px 12px 0 0;   /* Only top corners rounded */&#13;
+  border-bottom: none;&#13;
+  margin: 0;&#13;
+}&#13;
+&#13;
+/* Doctor Name inside heading */&#13;
+.doctor-list-widget .doctor-card .panel-heading .doctor-name {&#13;
+  margin: 0;&#13;
+  color: #fff;&#13;
+  font-weight: normal;            /* Soft, not too bold */&#13;
+}&#13;
+&#13;
+/* Doctor Card Body */&#13;
+.doctor-list-widget .doctor-card .panel-body {&#13;
+  background-color: #fdfcf7;      /* Pastel cream */&#13;
+  padding: 14px;&#13;
+}&#13;
+&#13;
+.doctor-list-widget .doctor-card p {&#13;
+  font-size: 0.95rem;&#13;
+  color: #5a5a5a;&#13;
+  margin: 0 0 12px 0;&#13;
+}&#13;
+&#13;
+/* “View Profile” Button */&#13;
+.doctor-list-widget .doctor-card .btn.btn-primary {&#13;
+  background-color: #b599e2;      /* Pastel purple */&#13;
+  border-color: #b599e2;&#13;
+  color: #fff;                    /* White text */&#13;
+  font-size: 0.95rem;&#13;
+  font-weight: 600;&#13;
+  border-radius: 12px;            /* Fully rounded pill shape */&#13;
+  padding: 8px 16px;&#13;
+  transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;&#13;
+}&#13;
+.doctor-list-widget .doctor-card .btn.btn-primary:hover,&#13;
+.doctor-list-widget .doctor-card .btn.btn-primary:focus {&#13;
+  background-color: #9d7dcf;      /* Slightly darker pastel purple on hover */&#13;
+  border-color: #9d7dcf;&#13;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);&#13;
+  outline: none;&#13;
+}&#13;
+&#13;
+/* ——————————————————————————————————————————————————————————————&#13;
+   Grid Layout Overrides (Row &amp; Col spacing)&#13;
+   —————————————————————————————————————————————————————————————— */&#13;
+.doctor-list-widget .row {&#13;
+  margin-left: -8px;&#13;
+  margin-right: -8px;&#13;
+}&#13;
+.doctor-list-widget .row &gt; [class*="col-"] {&#13;
+  padding-left: 8px;&#13;
+  padding-right: 8px;&#13;
+}</css>
+        <name>appointments_portal.css</name>
+        <sys_class_name>sp_css</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-06-02 14:09:18</sys_created_on>
+        <sys_id>b9664a4383792210870010c5eeaad313</sys_id>
+        <sys_mod_count>17</sys_mod_count>
+        <sys_name>appointments_portal.css</sys_name>
+        <sys_package display_value="Easy_Appointments" source="x_1032697_easy_a_0">59e4e8ee83212e10870010c5eeaad35d</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Easy_Appointments">59e4e8ee83212e10870010c5eeaad35d</sys_scope>
+        <sys_update_name>sp_css_b9664a4383792210870010c5eeaad313</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-06-02 14:52:25</sys_updated_on>
+        <turn_off_scss_compilation>false</turn_off_scss_compilation>
+    </sp_css>
+</record_update>

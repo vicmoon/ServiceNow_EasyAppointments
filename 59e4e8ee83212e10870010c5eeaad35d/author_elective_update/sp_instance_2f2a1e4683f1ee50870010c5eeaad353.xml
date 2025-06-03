@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_instance">
+    <sp_instance action="DELETE">
+        <active>true</active>
+        <class_name/>
+        <color>success</color>
+        <css/>
+        <glyph/>
+        <id/>
+        <order>1</order>
+        <roles/>
+        <short_description/>
+        <size>md</size>
+        <sp_column display_value="1">210ad60683f1ee50870010c5eeaad354</sp_column>
+        <sp_widget display_value="link-button">abc50de6d702120023c84f80de61036a</sp_widget>
+        <sys_class_name>sp_instance</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-05-30 13:01:20</sys_created_on>
+        <sys_id>2f2a1e4683f1ee50870010c5eeaad353</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="Easy_Appointments" source="x_1032697_easy_a_0">59e4e8ee83212e10870010c5eeaad35d</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Easy_Appointments">59e4e8ee83212e10870010c5eeaad35d</sys_scope>
+        <sys_update_name>sp_instance_2f2a1e4683f1ee50870010c5eeaad353</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-05-30 13:04:32</sys_updated_on>
+        <title/>
+        <url/>
+        <widget_parameters><![CDATA[{
+	"href": {
+		"value": "https://skillcertpro.com/servicenow-cad-practice-tests/7/",
+		"displayValue": "https://skillcertpro.com/servicenow-cad-practice-tests/7/"
+	},
+	"button_text": {
+		"value": "Make an Appointment",
+		"displayValue": "Make an Appointment"
+	}
+}]]></widget_parameters>
+    </sp_instance>
+    <sys_translated_text action="DELETE" query="documentkey=2f2a1e4683f1ee50870010c5eeaad353"/>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Easy_Appointments">59e4e8ee83212e10870010c5eeaad35d</application>
+        <file_path/>
+        <instance_id>5704da2f1b6af5949377eb9b2d4bcb6b</instance_id>
+        <instance_name>dev221523</instance_name>
+        <name>sp_instance_2f2a1e4683f1ee50870010c5eeaad353</name>
+        <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="sp_instance"&gt;&lt;sp_instance action="INSERT_OR_UPDATE"&gt;&lt;active&gt;true&lt;/active&gt;&lt;class_name/&gt;&lt;color&gt;success&lt;/color&gt;&lt;css/&gt;&lt;glyph/&gt;&lt;id/&gt;&lt;order&gt;1&lt;/order&gt;&lt;roles/&gt;&lt;short_description/&gt;&lt;size&gt;md&lt;/size&gt;&lt;sp_column display_value="1"&gt;210ad60683f1ee50870010c5eeaad354&lt;/sp_column&gt;&lt;sp_widget display_value="link-button"&gt;abc50de6d702120023c84f80de61036a&lt;/sp_widget&gt;&lt;sys_class_name&gt;sp_instance&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2025-05-30 13:01:20&lt;/sys_created_on&gt;&lt;sys_id&gt;2f2a1e4683f1ee50870010c5eeaad353&lt;/sys_id&gt;&lt;sys_mod_count&gt;3&lt;/sys_mod_count&gt;&lt;sys_name/&gt;&lt;sys_package display_value="Easy_Appointments" source="x_1032697_easy_a_0"&gt;59e4e8ee83212e10870010c5eeaad35d&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_scope display_value="Easy_Appointments"&gt;59e4e8ee83212e10870010c5eeaad35d&lt;/sys_scope&gt;&lt;sys_update_name&gt;sp_instance_2f2a1e4683f1ee50870010c5eeaad353&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2025-05-30 13:04:32&lt;/sys_updated_on&gt;&lt;title/&gt;&lt;url/&gt;&lt;widget_parameters&gt;&lt;![CDATA[{
+	"href": {
+		"value": "https://skillcertpro.com/servicenow-cad-practice-tests/7/",
+		"displayValue": "https://skillcertpro.com/servicenow-cad-practice-tests/7/"
+	},
+	"button_text": {
+		"value": "Make an Appointment",
+		"displayValue": "Make an Appointment"
+	}
+}]]&gt;&lt;/widget_parameters&gt;&lt;/sp_instance&gt;&lt;sys_translated_text action="delete_multiple" query="documentkey=2f2a1e4683f1ee50870010c5eeaad353"/&gt;&lt;/record_update&gt;</payload>
+        <payload_hash>-1230716892</payload_hash>
+        <record_name/>
+        <reverted_from/>
+        <source>cdeaaea2832d2e10870010c5eeaad398</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-05-30 13:04:32</sys_created_on>
+        <sys_id>52ead68683f1ee50870010c5eeaad344</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>197214b4bb80000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-05-30 13:04:32</sys_updated_on>
+        <type>Instance</type>
+        <update_guid>d6ead686fef1ee505d3716c55f657343</update_guid>
+        <update_guid_history>d6ead686fef1ee505d3716c55f657343:-1230716892,0a7a52862cf1ee50516a7f45be99ccbf:415142468,1f6a5a46e7f1ee50d28539c64cf9f2dc:798989966,272a1e4619f1ee504fd0de1b0c279055:427128068</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="">3d2b52c683f1ee50870010c5eeaad3c5</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-05-30 13:05:35</sys_created_on>
+        <sys_db_object display_value="" name="sp_instance">sp_instance</sys_db_object>
+        <sys_id>257f94a6f2604318994dcded5b16ec69</sys_id>
+        <sys_metadata>2f2a1e4683f1ee50870010c5eeaad353</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="Easy_Appointments" source="x_1032697_easy_a_0">59e4e8ee83212e10870010c5eeaad35d</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Easy_Appointments">59e4e8ee83212e10870010c5eeaad35d</sys_scope>
+        <sys_scope_delete display_value="">0680a9daf3c8467f80476c6fa3c15721</sys_scope_delete>
+        <sys_update_name>sp_instance_2f2a1e4683f1ee50870010c5eeaad353</sys_update_name>
+        <sys_update_version display_value="sp_instance_2f2a1e4683f1ee50870010c5eeaad353">52ead68683f1ee50870010c5eeaad344</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-05-30 13:05:35</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

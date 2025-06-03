@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[api.controller=function() {  /* widget controller */  var c = this;};]]></client_script>
+        <controller_as>c</controller_as>
+        <css>/*---------------------------------------------------
+  1. Retro Header Container
+----------------------------------------------------*/
+.retro-header {
+  background: #f5f0e1;            /* Light cream background for a retro vibe */
+  border-bottom: 2px solid #ccc; /* Subtle border to ground the header */
+  padding: 0.75rem 1.5rem;   
+  
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  font-family: 'Courier New', Courier, monospace;
+}
+
+/* Keep the header always on top if needed */
+.retro-header.sticky {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+
+/*---------------------------------------------------
+  2. Portal Icon (Doctor Icon Link)
+----------------------------------------------------*/
+/* ■ Keep the container a bit larger so the icon has breathing room: */
+.portal-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;          /* adjust if you want a bigger “box” */
+  height: 3rem;         /* same as width to keep it square */
+  border-radius: 0.25rem;
+  background: #e0d7c5;
+  color: #333;          /* this only matters if you still have an &lt;i&gt; or text */
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+/* 2) New rule: make any &lt;img&gt; inside .portal-icon scale nicely */
+.portal-icon img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  display: block;       /* removes small inline‐image whitespace */
+}
+
+/* Hover/focus effect on the icon link */
+.portal-icon:hover,
+.portal-icon:focus {
+  background: #d1c3a6;  /* Darker cream on hover */
+  color: #007bff;       /* Bootstrap’s primary blue for contrast */
+  text-decoration: none;
+}
+
+/*---------------------------------------------------
+  3. Navigation Links (“nav-menu”)
+----------------------------------------------------*/
+.nav-menu a {
+  display:flex;
+  flex-direction:row;
+  justify-content: flex-end;
+  margin-left: 1.5rem;          /* Spacing between “Home” and “Search” */
+  color: #333;                  /* Base link color */
+  text-decoration: none;        /* Remove underline */
+  font-weight: bold;            /* Slightly bold text */
+  font-size: 3rem;              /* Keep font consistent */
+  position: relative;           /* For an underline animation */
+  transition: color 0.2s ease;
+}
+
+.nav-menu a:hover,
+.nav-menu a:focus {
+  color: #007bff;
+}
+
+
+
+</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>header_appointments</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {
+  
+}]]></link>
+        <name>Header_appointments</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+  /* populate the 'data' object */
+  /* e.g., data.table = $sp.getValue('table'); */
+
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-06-02 13:29:46</sys_created_on>
+        <sys_id>9d7df90783392210870010c5eeaad3db</sys_id>
+        <sys_mod_count>16</sys_mod_count>
+        <sys_name>Header_appointments</sys_name>
+        <sys_package display_value="Easy_Appointments" source="x_1032697_easy_a_0">59e4e8ee83212e10870010c5eeaad35d</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Easy_Appointments">59e4e8ee83212e10870010c5eeaad35d</sys_scope>
+        <sys_update_name>sp_widget_9d7df90783392210870010c5eeaad3db</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-06-02 14:23:53</sys_updated_on>
+        <template><![CDATA[<header class="retro-header d-flex align-items-center">
+  <a href="?id=doctor_home" class="portal-icon" aria-label="Doctor Appointment">
+    <!-- Replace XXXXXXXX with your actual db_image.sys_id: -->
+    <img 
+      src="/db_image.do?sys_id=52f6028383792210870010c5eeaad349" 
+      alt="Doctor Icon" 
+    />
+  </a>
+
+  <nav class="nav-menu ms-auto">
+    <a href="?id=doctor_home">Home</a>
+  </nav>
+</header>
+]]></template>
+    </sp_widget>
+</record_update>
